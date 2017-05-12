@@ -1,0 +1,31 @@
+{
+  "name": "colibriphp/webapp",
+  "description": "MVC Application Collected From ColibriPhp Libraries",
+  "keywords": ["php webapp","webapp","mvc app"],
+  "authors": [
+    {
+      "name": "Ivan Hontarenko",
+      "email": "stewie.dev@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": ">=5.5",
+    "colibriphp/loader": "~0.1",
+    "colibriphp/service-locator": "~0.1",
+    "colibriphp/parameters": "~0.1",
+    "colibriphp/http": "~0.1",
+    "colibriphp/router": "~0.1",
+    "colibriphp/uri": "~0.1",
+    "colibriphp/url-generator": "~0.1",
+    "colibriphp/template": "~1.0",
+    "colibriphp/session": "~0.1",
+    "colibriphp/html": "~0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Colibri\\WebApp\\": "src/"
+    }
+  }
+}
