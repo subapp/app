@@ -15,6 +15,7 @@
     "colibriphp/loader": "~0.1",
     "colibriphp/service-locator": "~0.1",
     "colibriphp/parameters": "~0.1",
+    "colibriphp/annotations": "~1.0",
     "colibriphp/http": "~0.1",
     "colibriphp/router": "~0.1",
     "colibriphp/uri": "~0.1",

@@ -4,9 +4,99 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2379d0c3c5ead5a9d000d2d2608c0b4a",
-    "content-hash": "8b2e99c0c1e12a03f539c3ba24e4da6b",
+    "hash": "695a93277b35bbff0a0ff2eb8b412818",
+    "content-hash": "fea49fcebb9f9c35bde9b944f60b1634",
     "packages": [
+        {
+            "name": "colibriphp/annotations",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colibriphp/annotations.git",
+                "reference": "67d1a4b33478606d37b2f0dbd728924b03304346"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colibriphp/annotations/zipball/67d1a4b33478606d37b2f0dbd728924b03304346",
+                "reference": "67d1a4b33478606d37b2f0dbd728924b03304346",
+                "shasum": ""
+            },
+            "require": {
+                "colibriphp/cache": "~1.0",
+                "colibriphp/collection": "~0.1",
+                "colibriphp/lexer": "~1.0",
+                "colibriphp/loader": "~0.1",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Colibri\\Annotations\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Hontarenko",
+                    "email": "stewie.dev@gmail.com"
+                }
+            ],
+            "description": "Annotations Library",
+            "keywords": [
+                "annotations"
+            ],
+            "time": "2017-05-22 10:24:23"
+        },
+        {
+            "name": "colibriphp/cache",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colibriphp/cache.git",
+                "reference": "4bd9647f2ebbf12b9faf1529f889a8a71689c403"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colibriphp/cache/zipball/4bd9647f2ebbf12b9faf1529f889a8a71689c403",
+                "reference": "4bd9647f2ebbf12b9faf1529f889a8a71689c403",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^1.0",
+                "php": ">=5.6",
+                "predis/predis": "~1.0",
+                "psr/cache": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Colibri\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Hontarenko",
+                    "email": "stewie.dev@gmail.com",
+                    "homepage": "http://fux7.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Colibri Cache Component",
+            "keywords": [
+                "cache",
+                "colibri cache",
+                "php cache",
+                "psr-6"
+            ],
+            "time": "2017-05-13 09:18:33"
+        },
         {
             "name": "colibriphp/collection",
             "version": "v0.1.0",
@@ -49,16 +139,16 @@
         },
         {
             "name": "colibriphp/html",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colibriphp/html.git",
-                "reference": "197583256615c0607c4bbe940a0b2c4742a36527"
+                "reference": "c4ba357ee6bb50663ffdde5a6828b5e38635ad74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/html/zipball/197583256615c0607c4bbe940a0b2c4742a36527",
-                "reference": "197583256615c0607c4bbe940a0b2c4742a36527",
+                "url": "https://api.github.com/repos/colibriphp/html/zipball/c4ba357ee6bb50663ffdde5a6828b5e38635ad74",
+                "reference": "c4ba357ee6bb50663ffdde5a6828b5e38635ad74",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +157,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Dez\\Html\\": "src/"
+                    "Colibri\\Html\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -85,7 +175,7 @@
                 "html",
                 "php html"
             ],
-            "time": "2017-05-05 14:49:31"
+            "time": "2017-05-13 08:28:34"
         },
         {
             "name": "colibriphp/http",
@@ -127,6 +217,45 @@
                 "php http"
             ],
             "time": "2017-05-04 14:56:23"
+        },
+        {
+            "name": "colibriphp/lexer",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colibriphp/lexer.git",
+                "reference": "12a481500aa1ef677a7483daca0981587157a428"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colibriphp/lexer/zipball/12a481500aa1ef677a7483daca0981587157a428",
+                "reference": "12a481500aa1ef677a7483daca0981587157a428",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Colibri\\Lexer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Hontarenko",
+                    "email": "stewie.dev@gmail.com"
+                }
+            ],
+            "description": "Abstract Lexer",
+            "keywords": [
+                "lexer"
+            ],
+            "time": "2017-05-19 08:09:30"
         },
         {
             "name": "colibriphp/loader",
@@ -213,16 +342,16 @@
         },
         {
             "name": "colibriphp/router",
-            "version": "v0.1.0",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colibriphp/router.git",
-                "reference": "391cc654388ddb2df7f39b49bacc1064bbc9a90e"
+                "reference": "ad588e135f7d4a078f50559c814926d92e708399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/router/zipball/391cc654388ddb2df7f39b49bacc1064bbc9a90e",
-                "reference": "391cc654388ddb2df7f39b49bacc1064bbc9a90e",
+                "url": "https://api.github.com/repos/colibriphp/router/zipball/ad588e135f7d4a078f50559c814926d92e708399",
+                "reference": "ad588e135f7d4a078f50559c814926d92e708399",
                 "shasum": ""
             },
             "require": {
@@ -247,24 +376,24 @@
             ],
             "description": "Router Library",
             "keywords": [
-                "dez-php router",
+                "colibriphp router",
                 "php router",
                 "router"
             ],
-            "time": "2017-05-04 15:29:58"
+            "time": "2017-05-12 15:16:18"
         },
         {
             "name": "colibriphp/service-locator",
-            "version": "v0.1.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colibriphp/service-locator.git",
-                "reference": "b2fb59b06d5aa0f0061dd58d8009fd8f8daddaef"
+                "reference": "478408dcfa4c2316f8306daab4e31a0c169538f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/service-locator/zipball/b2fb59b06d5aa0f0061dd58d8009fd8f8daddaef",
-                "reference": "b2fb59b06d5aa0f0061dd58d8009fd8f8daddaef",
+                "url": "https://api.github.com/repos/colibriphp/service-locator/zipball/478408dcfa4c2316f8306daab4e31a0c169538f5",
+                "reference": "478408dcfa4c2316f8306daab4e31a0c169538f5",
                 "shasum": ""
             },
             "require": {
@@ -291,7 +420,7 @@
                 "php service locator",
                 "service locator"
             ],
-            "time": "2017-05-05 08:38:41"
+            "time": "2017-05-12 17:51:48"
         },
         {
             "name": "colibriphp/session",
@@ -335,16 +464,16 @@
         },
         {
             "name": "colibriphp/template",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colibriphp/template.git",
-                "reference": "79f33ad4f43caf50c00d31d0a1824bd3ca2569cb"
+                "reference": "0ad1e9286b124ffed1e8b9c365fccf3c045c6ee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/template/zipball/79f33ad4f43caf50c00d31d0a1824bd3ca2569cb",
-                "reference": "79f33ad4f43caf50c00d31d0a1824bd3ca2569cb",
+                "url": "https://api.github.com/repos/colibriphp/template/zipball/0ad1e9286b124ffed1e8b9c365fccf3c045c6ee0",
+                "reference": "0ad1e9286b124ffed1e8b9c365fccf3c045c6ee0",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +501,7 @@
                 "php template",
                 "template"
             ],
-            "time": "2017-05-05 12:50:01"
+            "time": "2017-05-13 11:03:17"
         },
         {
             "name": "colibriphp/uri",
@@ -461,6 +590,185 @@
                 "url"
             ],
             "time": "2017-05-05 09:22:02"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.40",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "3828f0b24e2c1918bb362d57a53205d6dc8fde61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3828f0b24e2c1918bb362d57a53205d6dc8fde61",
+                "reference": "3828f0b24e2c1918bb362d57a53205d6dc8fde61",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "conflict": {
+                "league/flysystem-sftp": "<1.0.6"
+            },
+            "require-dev": {
+                "ext-fileinfo": "*",
+                "mockery/mockery": "~0.9",
+                "phpspec/phpspec": "^2.2",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-fileinfo": "Required for MimeType",
+                "league/flysystem-aws-s3-v2": "Allows you to use S3 storage with AWS SDK v2",
+                "league/flysystem-aws-s3-v3": "Allows you to use S3 storage with AWS SDK v3",
+                "league/flysystem-azure": "Allows you to use Windows Azure Blob storage",
+                "league/flysystem-cached-adapter": "Flysystem adapter decorator for metadata caching",
+                "league/flysystem-copy": "Allows you to use Copy.com storage",
+                "league/flysystem-eventable-filesystem": "Allows you to use EventableFilesystem",
+                "league/flysystem-rackspace": "Allows you to use Rackspace Cloud Files",
+                "league/flysystem-sftp": "Allows you to use SFTP server storage via phpseclib",
+                "league/flysystem-webdav": "Allows you to use WebDAV storage",
+                "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter",
+                "spatie/flysystem-dropbox": "Allows you to use Dropbox storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Filesystem abstraction: Many filesystems, one API.",
+            "keywords": [
+                "Cloud Files",
+                "WebDAV",
+                "abstraction",
+                "aws",
+                "cloud",
+                "copy.com",
+                "dropbox",
+                "file systems",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "rackspace",
+                "remote",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "time": "2017-04-28 10:15:08"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16 16:22:20"
+        },
+        {
+            "name": "psr/cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "time": "2016-08-06 20:24:11"
         },
         {
             "name": "symfony/yaml",

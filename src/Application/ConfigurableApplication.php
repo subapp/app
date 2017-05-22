@@ -7,6 +7,7 @@ use Colibri\Parameters\ParametersInterface;
 use Colibri\WebApp\Application;
 use Colibri\WebApp\Controller\MvcException;
 use Colibri\Template\Template;
+use Colibri\WebApp\Loader\AnnotationDirectoryLoader;
 
 /**
  * Class ConfigurableApplication
@@ -36,6 +37,9 @@ abstract class ConfigurableApplication extends Application
      * @var ParametersCollection $serverConfig
      * @var ParametersCollection $applicationConfig
      */
+  
+    $this->config->handlePlaceholders();
+    
     if ($this->config->offsetExists('server')) {
       $serverConfig = $this->config->get('server');
       
@@ -85,6 +89,22 @@ abstract class ConfigurableApplication extends Application
     $this->boot();
     
     return $this;
+  }
+  
+  /**
+   * @return \Colibri\Router\Router
+   */
+  protected function initializeDefaultRoutes()
+  {
+    if ($this->config->path('annotations.enabled')
+      && ($controllersDirectory = realpath($this->config->path('annotations.controllers.directory')))) {
+      $loader = new AnnotationDirectoryLoader($this->serviceLocator);
+      $loader->load($controllersDirectory);
+    }
+    
+    $router = parent::initializeDefaultRoutes();
+
+    return $router;
   }
   
   /**
