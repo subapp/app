@@ -12,12 +12,12 @@
             "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/colibriphp/annotations.git",
+                "url": "https://github.com/colibrilabs/annotations.git",
                 "reference": "67d1a4b33478606d37b2f0dbd728924b03304346"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/annotations/zipball/67d1a4b33478606d37b2f0dbd728924b03304346",
+                "url": "https://api.github.com/repos/colibrilabs/annotations/zipball/67d1a4b33478606d37b2f0dbd728924b03304346",
                 "reference": "67d1a4b33478606d37b2f0dbd728924b03304346",
                 "shasum": ""
             },
@@ -48,6 +48,7 @@
             "keywords": [
                 "annotations"
             ],
+            "abandoned": "colibrilabs/annotations",
             "time": "2017-05-22 10:24:23"
         },
         {
@@ -262,12 +263,12 @@
             "version": "v0.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/colibriphp/loader.git",
+                "url": "https://github.com/colibrilabs/loader.git",
                 "reference": "88ffb774f6248ab0cd64ef94dc6c36f3a50026f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colibriphp/loader/zipball/88ffb774f6248ab0cd64ef94dc6c36f3a50026f1",
+                "url": "https://api.github.com/repos/colibrilabs/loader/zipball/88ffb774f6248ab0cd64ef94dc6c36f3a50026f1",
                 "reference": "88ffb774f6248ab0cd64ef94dc6c36f3a50026f1",
                 "shasum": ""
             },

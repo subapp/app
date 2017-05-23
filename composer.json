@@ -12,17 +12,17 @@
   "type": "library",
   "require": {
     "php": ">=5.5",
-    "colibriphp/loader": "~0.1",
-    "colibriphp/service-locator": "~0.1",
-    "colibriphp/parameters": "~0.1",
-    "colibriphp/annotations": "~1.0",
-    "colibriphp/http": "~0.1",
-    "colibriphp/router": "~0.1",
-    "colibriphp/uri": "~0.1",
-    "colibriphp/url-generator": "~0.1",
-    "colibriphp/template": "~1.0",
-    "colibriphp/session": "~0.1",
-    "colibriphp/html": "~0.1"
+    "colibrilabs/loader": "~0.1",
+    "colibrilabs/service-locator": "~0.1",
+    "colibrilabs/parameters": "~0.1",
+    "colibrilabs/annotations": "~1.0",
+    "colibrilabs/http": "~0.1",
+    "colibrilabs/router": "~0.1",
+    "colibrilabs/uri": "~0.1",
+    "colibrilabs/url-generator": "~0.1",
+    "colibrilabs/template": "~1.0",
+    "colibrilabs/session": "~0.1",
+    "colibrilabs/html": "~0.1"
   },
   "autoload": {
     "psr-4": {

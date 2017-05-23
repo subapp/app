@@ -8,9 +8,14 @@ use Colibri\WebApp\Routing\Route;
 class IndexController extends Controller
 {
   
+  /**
+   * @Route(pattern="/qwerty123")
+   */
+  protected $test;
+  
   public function __construct()
   {
-//        $this->setLayout('layout');
+    
   }
   
   /**

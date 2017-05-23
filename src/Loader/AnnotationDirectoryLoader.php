@@ -60,6 +60,11 @@ class AnnotationDirectoryLoader implements LoaderInterface
           }
         }
       }
+      
+      foreach ($reflection->getProperties() as $property) {
+        $reader->getPropertyAnnotations($property);
+      }
+      
     }
   }
   
