@@ -2,12 +2,16 @@
 
 namespace Colibri\WebApp\Application;
 
+use Colibri\Annotations\Reader;
 use Colibri\Parameters\ParametersCollection;
 use Colibri\Parameters\ParametersInterface;
 use Colibri\WebApp\Application;
-use Colibri\WebApp\Controller\MvcException;
 use Colibri\Template\Template;
-use Colibri\WebApp\Loader\AnnotationDirectoryLoader;
+use Colibri\WebApp\Loader\Annotation\AnnotationClassLoader;
+use Colibri\WebApp\Loader\Annotation\AnnotationDirectoryLoader;
+use Colibri\WebApp\Loader\Annotation\AnnotationLoaderResolver;
+use Colibri\WebApp\Loader\Annotation\RouteAnnotationLoader;
+use Colibri\WebApp\WebAppException;
 
 /**
  * Class ConfigurableApplication
@@ -29,7 +33,7 @@ abstract class ConfigurableApplication extends Application
   
   /**
    * @return $this
-   * @throws MvcException
+   * @throws WebAppException
    */
   public function configure()
   {
@@ -82,9 +86,11 @@ abstract class ConfigurableApplication extends Application
           return new Template($directory, $services);
         });
       } else {
-        throw new MvcException('Required configuration for view don`ts exists');
+        throw new WebAppException('Required configuration for view don`ts exists');
       }
     }
+    
+    $this->loadControllersAnnotations();
     
     $this->boot();
     
@@ -92,19 +98,25 @@ abstract class ConfigurableApplication extends Application
   }
   
   /**
-   * @return \Colibri\Router\Router
+   * @return $this
    */
-  protected function initializeDefaultRoutes()
+  protected function loadControllersAnnotations()
   {
     if ($this->config->path('annotations.enabled')
-      && ($controllersDirectory = realpath($this->config->path('annotations.controllers.directory')))) {
-      $loader = new AnnotationDirectoryLoader($this->serviceLocator);
-      $loader->load($controllersDirectory);
+      && ($directory = realpath($this->config->path('annotations.controllers.directory')))) {
+    
+      $reader = new Reader();
+      $parser = $reader->getParser();
+      $parser->addNamespace('Colibri\\WebApp\\Annotation');
+  
+      $resolver = new AnnotationLoaderResolver();
+      $resolver->addLoader(new RouteAnnotationLoader($this->getContainer()));
+      
+      $loader = new AnnotationDirectoryLoader(new AnnotationClassLoader($resolver, $reader));
+      $loader->load($directory, null);
     }
     
-    $router = parent::initializeDefaultRoutes();
-
-    return $router;
+    return $this;
   }
   
   /**

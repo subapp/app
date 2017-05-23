@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Controller;
+namespace Colibri\WebApp\Exception;
 
 /**
  * Class ReplaceException
- * @package Colibri\WebApp\Controller
+ * @package Colibri\WebApp\Exception
  */
 abstract class ReplaceException extends \Exception
 {

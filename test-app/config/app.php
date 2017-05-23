@@ -3,8 +3,8 @@
 return [
   'application' => [
     'root' => __DIR__ . '/..',
-    'static_path' => '/webapp/test-app/',
-    'base_path' => '/webapp/test-app/',
+    'static_path' => '/',
+    'base_path' => '/',
     'autoload' => [
       'App\\Controller' => __DIR__ . '/../controllers',
     ],

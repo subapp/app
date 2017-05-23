@@ -21,7 +21,9 @@ class TestApp extends ConfigurableApplication
 {
   protected function boot()
   {
-
+    error_reporting(1);
+    ini_set('display_errors', 1);
   }
 }
+
 (new TestApp(ParametersCollection::createFromFile(__DIR__ . '/config/app.php')))->run();

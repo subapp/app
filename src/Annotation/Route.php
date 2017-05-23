@@ -1,17 +1,17 @@
 <?php
 
-namespace Colibri\WebApp\Routing;
+namespace Colibri\WebApp\Annotation;
 
 use Colibri\Annotations\Annotation\Target;
 use Colibri\Router\Router;
 
 /**
  * Class Route
- * @package Colibri\WebApp\Routing
+ * @package Colibri\WebApp\Annotation
  * @Annotation()
  * @Target({Target::CLAZZ, Target::METHOD})
  */
-class Route
+class Route implements AnnotationInterface
 {
   
   /**
@@ -20,21 +20,23 @@ class Route
   public $pattern;
   
   /**
-   * @var array
+   * @var string
    */
-  public $matches = [];
+  public $controller;
+  
+  /**
+   * @var string
+   */
+  public $action;
   
   /**
    * @var array
    */
-  public $methods = [];
+  public $methods;
   
   /**
-   * @param Router $router
+   * @var array
    */
-  public function register(Router $router)
-  {
-    $router->add($this->pattern, $this->matches, $this->methods);
-  }
+  public $regexp;
   
 }

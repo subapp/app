@@ -4,6 +4,8 @@ namespace Colibri\WebApp\Controller;
 
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\WebApp\Controller;
+use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\WebAppException;
 
 /**
  * Class ControllerResolver
@@ -54,8 +56,8 @@ class ControllerResolver
   
   /**
    * @return ControllerResponse
-   * @throws Page404Exception
-   * @throws RuntimeMvcException
+   * @throws RuntimeWebAppException
+   * @throws WebAppException
    */
   public function execute()
   {
@@ -85,15 +87,15 @@ class ControllerResolver
         $controller->afterExecute();
 
       } else {
-        throw new RuntimeMvcException('Controller found but it should implemented interface [:name]', [
+        throw new RuntimeWebAppException('Controller found but it should implemented interface [:name]', [
           'name' => ControllerInterface::class
         ]);
       }
       
     } catch (\ReflectionException $exception) {
-      throw new Page404Exception($exception->getMessage());
+      throw new WebAppException($exception->getMessage());
     } catch (\Exception $exception) {
-      throw new RuntimeMvcException($exception->getMessage());
+      throw new RuntimeWebAppException($exception->getMessage());
     }
     
     return $this->response;

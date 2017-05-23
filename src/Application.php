@@ -7,8 +7,6 @@ use Colibri\Http\Response;
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\ServiceLocator\Service;
 use Colibri\WebApp\Controller\ControllerResolver;
-use Colibri\WebApp\Controller\MvcException;
-use Colibri\WebApp\Controller\Page404Exception;
 use Colibri\Router\Router;
 
 /**
@@ -33,7 +31,7 @@ class Application implements ServiceLocatorAware
    */
   public function __construct()
   {
-    $this->setContainer(FactoryContainer::instance());
+    $this->setContainer(ApplicationContainer::instance());
   }
 
   /**
@@ -81,7 +79,7 @@ class Application implements ServiceLocatorAware
   
   /**
    * @return Response
-   * @throws MvcException
+   * @throws WebAppException
    * @throws \Exception
    */
   public function run()
@@ -132,7 +130,7 @@ class Application implements ServiceLocatorAware
           $this->response->setContent($content);
         }
         
-      } catch (Page404Exception $exception) {
+      } catch (WebAppException $exception) {
         $this->response->setStatusCode(404);
         throw $exception;
       } catch (\Exception $exception) {
@@ -143,7 +141,7 @@ class Application implements ServiceLocatorAware
     } else {
       $this->response->setStatusCode(404);
       
-      throw new Page404Exception("Page with route '{$router->getTargetUri()}' was not found");
+      throw new WebAppException("Page with route '{$router->getTargetUri()}' was not found");
     }
 
     return $this->response->send();

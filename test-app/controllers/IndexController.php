@@ -3,14 +3,12 @@
 namespace App\Controller;
 
 use Colibri\WebApp\Controller;
-use Colibri\WebApp\Routing\Route;
+use Colibri\WebApp\Annotation\Method;
+use Colibri\WebApp\Annotation\Route;
 
 class IndexController extends Controller
 {
   
-  /**
-   * @Route(pattern="/qwerty123")
-   */
   protected $test;
   
   public function __construct()
@@ -19,7 +17,7 @@ class IndexController extends Controller
   }
   
   /**
-   * @Route(pattern="/test/123")
+   * @Route(pattern="/test/123", method=@Method(methods='POST'))
    * @param int $id
    */
   public function indexAction($id = 0)
@@ -43,11 +41,14 @@ class IndexController extends Controller
   /**
    * @Route(pattern="/do/:id")
    */
-  public function test2Action($id)
+  public function test2Action($id = 0)
   {
     return json_encode([__METHOD__, $id]);
   }
   
+  /**
+   * @Route(pattern="/site/banner_40911", action="hello")
+   */
   public function helloAction()
   {
     $this->view->set('controller', $this->execute([
