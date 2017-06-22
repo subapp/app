@@ -12,7 +12,7 @@
   "type": "library",
   "require": {
     "php": ">=5.5",
-    "colibrilabs/loader": "~1.0",
+    "colibrilabs/loader": "~1.2",
     "colibrilabs/service-locator": "~0.1",
     "colibrilabs/parameters": "~0.1",
     "colibrilabs/annotations": "~1.1",
