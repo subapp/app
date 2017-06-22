@@ -15,7 +15,7 @@
     "colibrilabs/loader": "~1.0",
     "colibrilabs/service-locator": "~0.1",
     "colibrilabs/parameters": "~0.1",
-    "colibrilabs/annotations": "^1.1",
+    "colibrilabs/annotations": "~1.1",
     "colibrilabs/http": "~0.1",
     "colibrilabs/router": "~0.1",
     "colibrilabs/uri": "~0.1",
