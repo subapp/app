@@ -59,7 +59,7 @@ class RouteAnnotationLoader implements LoaderInterface
    */
   protected function addRoute(\ReflectionMethod $method, Route $annotation)
   {
-    $methods = $annotation->matches ?: [];
+    $methods = $annotation->methods ?: [];
     $matches = $this->getRouteMatches($method);
     
     $this->getRouter()->add($annotation->pattern, $matches, $methods);
