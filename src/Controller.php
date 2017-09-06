@@ -85,14 +85,14 @@ abstract class Controller implements ControllerInterface
   /**
    * @param $name
    * @return mixed
-   * @throws MvcException
+   * @throws WebAppException
    */
   public function __get($name)
   {
     if (static::$container->has($name)) {
       return static::$container->get($name);
     } else {
-      throw new MvcException("Service '{$name}' not found on default container");
+      throw new WebAppException("Service '{$name}' not found on default container");
     }
   }
   
@@ -100,12 +100,12 @@ abstract class Controller implements ControllerInterface
    * @param array $parameters
    * @param bool $render
    * @return mixed
-   * @throws MvcException
+   * @throws WebAppException
    */
   public function execute(array $parameters = [], $render = false)
   {
     if (!isset($parameters['action'])) {
-      throw new MvcException("Action required for forwarding");
+      throw new WebAppException("For hierarchically calling controller method parameter 'action' is required");
     }
     
     $resolver = new ControllerResolver($this->getServiceLocator());
@@ -123,7 +123,7 @@ abstract class Controller implements ControllerInterface
     $content = $response->getControllerContent();
     
     if ($render === true && $this->response->isEnableBody() && $this->response->getBodyFormat() === Response::RESPONSE_HTML) {
-      $content = $this->view->render("{$resolver->getController()}/{$resolver->getAction()}");
+      $content = $this->view->render("{$resolver->getControllerCamelize()}/{$resolver->getActionCamelize()}");
     }
     
     return $content;
@@ -235,7 +235,7 @@ abstract class Controller implements ControllerInterface
    */
   public function beforeExecute()
   {
-    
+    return null;
   }
   
   /**
@@ -243,7 +243,7 @@ abstract class Controller implements ControllerInterface
    */
   public function afterExecute()
   {
-    
+    return null;
   }
   
   /**
@@ -277,6 +277,7 @@ abstract class Controller implements ControllerInterface
   public function setPseudoPath($pseudoPath)
   {
     $this->pseudoPath = $pseudoPath;
+    
     return $this;
   }
   
@@ -295,6 +296,7 @@ abstract class Controller implements ControllerInterface
   public function setReflectionClass($reflectionClass)
   {
     $this->reflectionClass = $reflectionClass;
+    
     return $this;
   }
   
@@ -313,6 +315,7 @@ abstract class Controller implements ControllerInterface
   public function setReflectionAction($reflectionAction)
   {
     $this->reflectionAction = $reflectionAction;
+    
     return $this;
   }
   

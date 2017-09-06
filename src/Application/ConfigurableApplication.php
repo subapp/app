@@ -62,12 +62,7 @@ abstract class ConfigurableApplication extends Application
     
     if ($this->config->offsetExists('application')) {
       $applicationConfig = $this->config->get('application');
-      
-      if ($applicationConfig->offsetExists('autoload')) {
-        $this->loader->registerNamespaces($applicationConfig->get('autoload')->toArray())
-          ->register();
-      }
-      
+ 
       if ($applicationConfig->offsetExists('controller')) {
         $this->setControllerNamespace($applicationConfig['controller']['namespace']);
       }
@@ -103,11 +98,18 @@ abstract class ConfigurableApplication extends Application
   protected function loadControllersAnnotations()
   {
     if ($this->config->path('annotations.enabled')
-      && ($directory = realpath($this->config->path('annotations.controllers.directory')))) {
+      && null !== ($directory = $this->config->path('annotations.controllers.directory'))
+      && false !== ($directory = realpath($directory))) {
     
       $reader = new Reader();
       $parser = $reader->getParser();
       $parser->addNamespace('Colibri\\WebApp\\Annotation');
+      
+      if (is_array($namespaces = $this->config->path('annotations.namespaces'))) {
+        foreach ($namespaces as $namespace) {
+          $parser->addNamespace($namespace);
+        }
+      }
   
       $resolver = new AnnotationLoaderResolver();
       $resolver->addLoader(new RouteAnnotationLoader($this->getContainer()));

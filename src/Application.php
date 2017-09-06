@@ -61,7 +61,7 @@ class Application implements ServiceLocatorAware
       return $this->serviceLocator->get($name);
     }
   
-    throw new WebAppException(sprintf('Cannot found service %s check if it registered', $name));
+    throw new WebAppException(sprintf('Cannot found service [%s] check if it registered', $name));
   }
   
   /**
@@ -117,7 +117,7 @@ class Application implements ServiceLocatorAware
             // If controller action nothing return, we try render inner template
             // controller_name/action_name.php
             if (null === $content) {
-              $templatePath = "{$resolver->getController()}/{$resolver->getAction()}";
+              $templatePath = "{$resolver->getControllerCamelize()}/{$resolver->getActionCamelize()}";
               $content = $this->render($templatePath, $controller->getPseudoPath());
             }
             

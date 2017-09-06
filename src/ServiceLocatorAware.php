@@ -2,7 +2,6 @@
 
 namespace Colibri\WebApp;
 
-use Colibri\Loader\ClassLoader\ClassLoader;
 use Colibri\Parameters\ParametersCollection;
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\Session\Flash\Flash\Session as FlashSession;
@@ -13,6 +12,7 @@ use Colibri\Router\Router;
 use Colibri\Session\Adapter\Files as SessionFiles;
 use Colibri\Template\NullTemplate;
 use Colibri\UrlGenerator\UrlBuilder;
+use Composer\Autoload\ClassLoader;
 
 /**
  * Interface ServiceLocatorAware
@@ -20,7 +20,7 @@ use Colibri\UrlGenerator\UrlBuilder;
  * @package Colibri\WebApp
  *
  * @property ParametersCollection config
- * @property ClassLoader loader
+ * @property ClassLoader classLoader
  * @property Request request
  * @property Response response
  * @property Cookies cookies

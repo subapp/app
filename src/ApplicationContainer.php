@@ -2,7 +2,6 @@
 
 namespace Colibri\WebApp;
 
-use Colibri\Loader\ClassLoader\ClassLoader;
 use Colibri\Parameters\ParametersCollection;
 use Colibri\ServiceLocator\Container;
 use Colibri\Session\Flash\Flash\Session as FlashSession;
@@ -13,6 +12,7 @@ use Colibri\Router\Router;
 use Colibri\Session\Adapter\Files as SessionFiles;
 use Colibri\Template\NullTemplate;
 use Colibri\UrlGenerator\UrlBuilder;
+use Composer\Autoload\ClassLoader;
 
 /**
  * Class ApplicationContainer
@@ -29,7 +29,7 @@ class ApplicationContainer extends Container implements ServiceLocatorAware
     parent::__construct();
   
     $this->set('config', new ParametersCollection());
-    $this->set('loader', new ClassLoader());
+    $this->set('classLoader', new ClassLoader());
     $this->set('request', new Request());
     $this->set('response', new Response());
     $this->set('cookies', new Cookies());

@@ -3,7 +3,6 @@
 namespace Colibri\WebApp\Annotation;
 
 use Colibri\Annotations\Annotation\Target;
-use Colibri\Router\Router;
 
 /**
  * Class Route
@@ -20,23 +19,13 @@ class Route implements AnnotationInterface
   public $pattern;
   
   /**
-   * @var string
+   * @var array
    */
-  public $controller;
-  
-  /**
-   * @var string
-   */
-  public $action;
+  public $regexp;
   
   /**
    * @var array
    */
   public $methods;
-  
-  /**
-   * @var array
-   */
-  public $regexp;
   
 }

@@ -74,7 +74,7 @@ class ControllerResolver
         
         $controller->setContainer($this->container);
         
-        $reflectionMethod = new \ReflectionMethod($class, $this->getActionCamelize());
+        $reflectionMethod = new \ReflectionMethod($class, $this->getActionMethodName());
         $controller->setReflectionAction($reflectionMethod);
         
         $controller->setNamespace($this->getNamespace());
@@ -106,7 +106,7 @@ class ControllerResolver
    */
   public function getControllerClass()
   {
-    return trim($this->getNamespace(), '\\') . '\\' . $this->getControllerCamelize();
+    return trim($this->getNamespace(), '\\') . '\\' . $this->getControllerClassName();
   }
   
   /**
@@ -132,7 +132,15 @@ class ControllerResolver
   {
     $parts = preg_split('/[-_]+/uis', $this->getController());
     
-    return implode('', array_map('ucfirst', $parts)) . 'Controller';
+    return implode(array_map('ucfirst', $parts));
+  }
+  
+  /**
+   * @return string
+   */
+  public function getControllerClassName()
+  {
+    return $this->getControllerCamelize() . 'Controller';
   }
   
   /**
@@ -174,7 +182,15 @@ class ControllerResolver
   {
     $parts = preg_split('/[-_]+/uis', $this->getAction());
     
-    return lcfirst(implode('', array_map('ucfirst', $parts))) . 'Action';
+    return implode(array_map('ucfirst', $parts));
+  }
+  
+  /**
+   * @return string
+   */
+  public function getActionMethodName()
+  {
+    return lcfirst($this->getActionCamelize()) . 'Action';
   }
   
   /**

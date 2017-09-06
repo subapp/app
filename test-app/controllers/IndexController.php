@@ -22,7 +22,7 @@ class IndexController extends Controller
    */
   public function indexAction($id = 0)
   {
-    
+    $this->setLayout('layout');
   }
   
   /**
@@ -35,7 +35,7 @@ class IndexController extends Controller
       'namespace' => '\\App\Controller',
       'action' => 'test2',
       'params' => [__METHOD__]
-    ]));
+    ], true));
   }
   
   /**
@@ -44,6 +44,14 @@ class IndexController extends Controller
   public function test2Action($id = 0)
   {
     return json_encode([__METHOD__, $id]);
+  }
+  
+  /**
+   * @Route({"/qwerty123", {}, {"GET", "POST"}})
+   */
+  public function testUcaseAction()
+  {
+//    return json_encode([__METHOD__]);
   }
   
   /**

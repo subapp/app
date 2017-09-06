@@ -26,22 +26,22 @@ return [
     ]
   ],
   'db' => [
-  'connection' => [
-    'development' => [
-      'dsn' => 'mysql:host=localhost;dbname=my-site',
-      'user' => 'root',
-      'password' => '0000',
-    ],
-    'production' => [
-      'dsn' => 'mysql:host=localhost;dbname=my-site',
-      'user' => 'root',
-      'password' => '0000',
+    'connection' => [
+      'development' => [
+        'dsn' => 'mysql:host=localhost;dbname=my-site',
+        'user' => 'root',
+        'password' => '0000',
+      ],
+      'production' => [
+        'dsn' => 'mysql:host=localhost;dbname=my-site',
+        'user' => 'root',
+        'password' => '0000',
+      ],
     ],
   ],
-],
-    'server' => [
-  'timezone' => 'Europe/Kiev',
-  'displayErrors' => 'On',
-  'errorLevel' => E_ALL,
-],
+  'server' => [
+    'timezone' => 'Europe/Kiev',
+    'displayErrors' => 'On',
+    'errorLevel' => E_ALL,
+  ],
 ];
