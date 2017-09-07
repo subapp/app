@@ -78,7 +78,7 @@ class ControllerResolver
         $controller->setReflectionAction($reflectionMethod);
         
         $controller->setNamespace($this->getNamespace());
-        $controller->setName($this->getControllerClassName());
+        $controller->setName($this->getControllerClass());
         $controller->setAction($this->getActionName());
         $controller->setParams($this->getParams());
         
@@ -130,7 +130,7 @@ class ControllerResolver
    */
   public function getControllerCamelize()
   {
-    return rtrim($this->getControllerClassName(), 'Controller');
+    return ucfirst(rtrim($this->getControllerClassName(), 'Controller'));
   }
   
   /**
@@ -170,7 +170,7 @@ class ControllerResolver
    */
   public function getActionCamelize()
   {
-    return rtrim($this->getActionName(), 'Action');
+    return ucfirst(rtrim($this->getActionName(), 'Action'));
   }
   
   /**
