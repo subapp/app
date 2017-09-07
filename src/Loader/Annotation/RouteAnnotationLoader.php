@@ -71,13 +71,7 @@ class RouteAnnotationLoader implements LoaderInterface
    */
   protected function getRouteMatches(\ReflectionMethod $method)
   {
-    $controller = str_replace('Controller', null, $method->getDeclaringClass()->getShortName());
-    $action = str_replace('Action', null, $method->getName());
-    
-    return [
-      'controller' => strtolower($controller),
-      'action' => strtolower($action),
-    ];
+    return ['callback' => [$method->getDeclaringClass()->getShortName(), $method->getName()]];
   }
   
   /**
