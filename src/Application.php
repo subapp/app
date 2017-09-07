@@ -88,6 +88,8 @@ class Application implements ServiceLocatorAware
 
     if ($router->isFounded()) {
       
+      list($controllerName, $actionName) = $this->extractControllerCallback($router);
+      
       $resolver = new ControllerResolver($this->getContainer());
       
       $namespace = null === $router->getNamespace()
@@ -95,10 +97,10 @@ class Application implements ServiceLocatorAware
         : $router->getNamespace();
       
       $resolver->setNamespace($namespace);
-      $resolver->setController($router->getController());
-      $resolver->setAction($router->getAction());
+      $resolver->setControllerClassName($controllerName);
+      $resolver->setActionName($actionName);
       $resolver->setParams($router->getMatches());
-  
+
       $this->templateInjection();
       
       try {
@@ -205,6 +207,17 @@ class Application implements ServiceLocatorAware
     $content = $this->view->fetch(null === $pseudoPath ? $path : "$pseudoPath::$path", $data);
     
     return $content;
+  }
+  
+  /**
+   * @param Router $router
+   * @return array|callable
+   */
+  private function extractControllerCallback(Router $router)
+  {
+    return $router->hasCallback()
+      ? $router->getCallback()
+      : [ucfirst($router->getController()) . 'Controller', lcfirst($router->getAction()) . 'Action'];
   }
   
 }
