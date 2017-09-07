@@ -32,12 +32,12 @@ class ControllerResolver
   /**
    * @var string
    */
-  protected $controller;
+  protected $controllerClassName;
   
   /**
    * @var string
    */
-  protected $action;
+  protected $actionName;
   
   /**
    * @var array
@@ -74,12 +74,12 @@ class ControllerResolver
         
         $controller->setContainer($this->container);
         
-        $reflectionMethod = new \ReflectionMethod($class, $this->getActionMethodName());
+        $reflectionMethod = new \ReflectionMethod($class, $this->getActionName());
         $controller->setReflectionAction($reflectionMethod);
         
         $controller->setNamespace($this->getNamespace());
-        $controller->setName($this->getController());
-        $controller->setAction($this->getAction());
+        $controller->setName($this->getControllerClassName());
+        $controller->setAction($this->getActionName());
         $controller->setParams($this->getParams());
         
         $controller->beforeExecute();
@@ -130,9 +130,7 @@ class ControllerResolver
    */
   public function getControllerCamelize()
   {
-    $parts = preg_split('/[-_]+/uis', $this->getController());
-    
-    return implode(array_map('ucfirst', $parts));
+    return rtrim($this->getControllerClassName(), 'Controller');
   }
   
   /**
@@ -140,23 +138,15 @@ class ControllerResolver
    */
   public function getControllerClassName()
   {
-    return $this->getControllerCamelize() . 'Controller';
+    return $this->controllerClassName;
   }
   
   /**
-   * @return string
+   * @param string $controllerClassName
    */
-  public function getController()
+  public function setControllerClassName($controllerClassName)
   {
-    return $this->controller;
-  }
-  
-  /**
-   * @param string $controller
-   */
-  public function setController($controller)
-  {
-    $this->controller = $controller;
+    $this->controllerClassName = ucfirst($controllerClassName);
   }
   
   /**
@@ -180,33 +170,23 @@ class ControllerResolver
    */
   public function getActionCamelize()
   {
-    $parts = preg_split('/[-_]+/uis', $this->getAction());
-    
-    return implode(array_map('ucfirst', $parts));
+    return rtrim($this->getActionName(), 'Action');
   }
   
   /**
    * @return string
    */
-  public function getActionMethodName()
+  public function getActionName()
   {
-    return lcfirst($this->getActionCamelize()) . 'Action';
+    return $this->actionName;
   }
   
   /**
-   * @return string
+   * @param string $actionName
    */
-  public function getAction()
+  public function setActionName($actionName)
   {
-    return $this->action;
-  }
-  
-  /**
-   * @param string $action
-   */
-  public function setAction($action)
-  {
-    $this->action = $action;
+    $this->actionName = $actionName;
   }
   
   /**
