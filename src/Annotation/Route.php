@@ -16,6 +16,11 @@ class Route implements AnnotationInterface
   /**
    * @var string
    */
+  public $prefix;
+  
+  /**
+   * @var string
+   */
   public $pattern;
   
   /**
