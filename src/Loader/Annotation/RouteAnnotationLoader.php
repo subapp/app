@@ -46,36 +46,24 @@ class RouteAnnotationLoader implements LoaderInterface
     if ($resource instanceof AnnotationResource) {
       /**
        * @var Route $annotation
-       * @var \ReflectionMethod $reflection
+       * @var \ReflectionMethod|\ReflectionClass $reflection
       */
       $annotation = $resource->getAnnotation();
       $reflection = $resource->getReflection();
       
-      $className = $this->declaringClass;
-      
-      if ($reflection instanceof \ReflectionMethod) {
-        $className = $reflection->getDeclaringClass()->getName();
-        
-        if ($this->declaringClass !== $className) {
-          $this->setPrefix(null);
-        }
-        
-        $this->addRoute($reflection, $annotation);
-      } elseif ($reflection instanceof \ReflectionClass) {
-        $this->setPrefix($annotation->prefix);
-        $className = $reflection->getName();
-      }
-  
-      $this->declaringClass = $className;
+      ($reflection instanceof \ReflectionMethod)
+        ? $this->addRoute($reflection, $annotation) : $this->addPrefix($reflection, $annotation);
     }
   }
   
   /**
-   * @inheritDoc
+   * @param \ReflectionClass $class
+   * @param Route $annotation
    */
-  public function isSupported($resource, $resourceType)
+  protected function addPrefix(\ReflectionClass $class, Route $annotation)
   {
-    return $resource instanceof Route;
+    $this->setPrefix($annotation->prefix);
+    $this->setDeclaringClass($class->getName());
   }
   
   /**
@@ -84,10 +72,24 @@ class RouteAnnotationLoader implements LoaderInterface
    */
   protected function addRoute(\ReflectionMethod $method, Route $annotation)
   {
+    $class = $method->getDeclaringClass();
+    
+    if ($this->getDeclaringClass() !== $class->getName()) {
+      $this->setPrefix(null);
+      $this->setDeclaringClass($class->getName());
+    }
+    
     $methods = $annotation->methods ?: [];
     $matches = $this->getRouteMatches($method);
-    
     $this->getRouter()->add($this->getPattern($annotation), $matches, $methods);
+  }
+  
+  /**
+   * @inheritDoc
+   */
+  public function isSupported($resource, $resourceType)
+  {
+    return $resource instanceof Route;
   }
   
   /**
@@ -114,6 +116,25 @@ class RouteAnnotationLoader implements LoaderInterface
   public function setPrefix($prefix)
   {
     $this->prefix = $prefix;
+    
+    return $this;
+  }
+  
+  /**
+   * @return string
+   */
+  public function getDeclaringClass()
+  {
+    return $this->declaringClass;
+  }
+  
+  /**
+   * @param string $declaringClass
+   * @return $this
+   */
+  public function setDeclaringClass($declaringClass)
+  {
+    $this->declaringClass = $declaringClass;
     
     return $this;
   }
