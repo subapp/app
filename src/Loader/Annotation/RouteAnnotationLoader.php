@@ -145,7 +145,12 @@ class RouteAnnotationLoader implements LoaderInterface
    */
   protected function getRouteMatches(\ReflectionMethod $method)
   {
-    return ['callback' => [$method->getDeclaringClass()->getShortName(), $method->getName()]];
+    $class = $method->getDeclaringClass();
+    
+    return [
+      'callback'  => [$class->getShortName(), $method->getName()],
+      'namespace' => $class->getNamespaceName(),
+    ];
   }
   
   /**
