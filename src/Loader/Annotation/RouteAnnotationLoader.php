@@ -15,6 +15,16 @@ class RouteAnnotationLoader implements LoaderInterface
 {
   
   /**
+   * @var string
+   */
+  protected $prefix;
+  
+  /**
+   * @var string
+   */
+  protected $declaringClass;
+  
+  /**
    * @var ContainerInterface
    */
   protected $serviceLocator;
@@ -40,8 +50,23 @@ class RouteAnnotationLoader implements LoaderInterface
       */
       $annotation = $resource->getAnnotation();
       $reflection = $resource->getReflection();
-
-      $this->addRoute($reflection, $annotation);
+      
+      $className = $this->declaringClass;
+      
+      if ($reflection instanceof \ReflectionMethod) {
+        $className = $reflection->getDeclaringClass()->getName();
+        
+        if ($this->declaringClass !== $className) {
+          $this->setPrefix(null);
+        }
+        
+        $this->addRoute($reflection, $annotation);
+      } elseif ($reflection instanceof \ReflectionClass) {
+        $this->setPrefix($annotation->prefix);
+        $className = $reflection->getName();
+      }
+  
+      $this->declaringClass = $className;
     }
   }
   
@@ -62,7 +87,35 @@ class RouteAnnotationLoader implements LoaderInterface
     $methods = $annotation->methods ?: [];
     $matches = $this->getRouteMatches($method);
     
-    $this->getRouter()->add($annotation->pattern, $matches, $methods);
+    $this->getRouter()->add($this->getPattern($annotation), $matches, $methods);
+  }
+  
+  /**
+   * @param Route $annotation
+   * @return string
+   */
+  protected function getPattern(Route $annotation)
+  {
+    return sprintf('%s%s', $this->getPrefix(), $annotation->pattern);
+  }
+  
+  /**
+   * @return string
+   */
+  public function getPrefix()
+  {
+    return $this->prefix;
+  }
+  
+  /**
+   * @param string $prefix
+   * @return $this
+   */
+  public function setPrefix($prefix)
+  {
+    $this->prefix = $prefix;
+    
+    return $this;
   }
   
   /**
