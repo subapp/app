@@ -21,6 +21,7 @@ class DirectoryClassFileLoader extends ClassFileLoader
     $collection = new ArrayCollection();
     $iterator = new \RecursiveDirectoryIterator($resource,
       \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS);
+    $iterator = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::SELF_FIRST);
   
     /** @var \SplFileInfo $classFile */
     foreach ($iterator as $classFile) {
@@ -31,7 +32,7 @@ class DirectoryClassFileLoader extends ClassFileLoader
         }
       }
     }
-    
+
     return $collection;
   }
   
