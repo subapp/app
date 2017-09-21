@@ -64,13 +64,13 @@ abstract class ConfigurableApplication extends Application
       $applicationConfig = $this->config->get('application');
  
       if ($applicationConfig->offsetExists('controller')) {
-        $this->setControllerNamespace($applicationConfig['controller']['namespace']);
+        $this->setControllerNamespace($applicationConfig->path('controller.defaultNamespace'));
       }
       
-      if ($applicationConfig->offsetExists('base_path')) {
-        $this->url->setBasePath($applicationConfig['base_path']);
-        if ($applicationConfig->offsetExists('static_path')) {
-          $this->url->setStaticPath($applicationConfig['static_path']);
+      if ($applicationConfig->offsetExists('basePath')) {
+        $this->url->setBasePath($applicationConfig['basePath']);
+        if ($applicationConfig->offsetExists('staticPath')) {
+          $this->url->setStaticPath($applicationConfig['staticPath']);
         }
       }
       
