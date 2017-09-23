@@ -81,7 +81,15 @@ class RouteAnnotationLoader implements LoaderInterface
     
     $methods = $annotation->methods ?: [];
     $matches = $this->getRouteMatches($method);
-    $this->getRouter()->add($this->getPattern($annotation), $matches, $methods);
+    
+    $route = $this->getRouter()->add($this->getPattern($annotation), $matches, $methods);
+    
+    if (null !== $annotation->regexp) {
+      $regexPairs = array_chunk($annotation->regexp, 2);
+      foreach ($regexPairs as list($variable, $regex)) {
+        $route->regex($variable, $regex);
+      }
+    }
   }
   
   /**
