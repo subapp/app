@@ -130,7 +130,13 @@ class ControllerResolver
    */
   public function getControllerCamelize()
   {
-    return ucfirst(rtrim($this->getControllerClassName(), 'Controller'));
+    $className = $this->getControllerClassName();
+  
+    if (false !== strpos($className, 'Controller')) {
+      $className = substr($className, 0, -10);
+    }
+  
+    return ucfirst($className);
   }
   
   /**
@@ -170,7 +176,13 @@ class ControllerResolver
    */
   public function getActionCamelize()
   {
-    return ucfirst(rtrim($this->getActionName(), 'Action'));
+    $actionName = $this->getActionName();
+    
+    if (false !== strpos($actionName, 'Action')) {
+      $actionName = substr($actionName, 0, -6);
+    }
+    
+    return ucfirst($actionName);
   }
   
   /**
