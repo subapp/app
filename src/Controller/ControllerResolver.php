@@ -78,7 +78,7 @@ class ControllerResolver
         $controller->setReflectionAction($reflectionMethod);
         
         $controller->setNamespace($this->getNamespace());
-        $controller->setName($this->getControllerClass());
+        $controller->setName($this->getControllerClassName());
         $controller->setAction($this->getActionName());
         $controller->setParams($this->getParams());
         
