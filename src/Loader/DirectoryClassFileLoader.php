@@ -25,7 +25,7 @@ class DirectoryClassFileLoader extends ClassFileLoader
   
     /** @var \SplFileInfo $classFile */
     foreach ($iterator as $classFile) {
-      if ($classFile->isFile()) {
+      if ($classFile->isFile() && parent::isSupported($classFile->getPathname(), null)) {
         $classFile = new \SplFileObject($classFile->getRealPath());
         if ($className = $this->findClassName($classFile)) {
           $collection->append($className);
