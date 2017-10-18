@@ -26,7 +26,7 @@ class ClassFileLoader implements LoaderInterface
    */
   public function isSupported($resource, $resourceType)
   {
-    return is_file($resource) && is_readable($resource);
+    return is_file($resource) && is_readable($resource) && 'php' === substr($resource, -3);
   }
   
   /**
