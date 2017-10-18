@@ -111,13 +111,13 @@ abstract class Controller implements ControllerInterface
     $resolver = new ControllerResolver($this->getServiceLocator());
     
     $resolver->setNamespace(isset($parameters['namespace']) ? $parameters['namespace'] : $this->getNamespace());
-    $resolver->setController(isset($parameters['controller']) ? $parameters['controller'] : $this->getName());
+    $resolver->setControllerClassName(isset($parameters['controller']) ? $parameters['controller'] : $this->getName());
     
     if (isset($parameters['params'], $parameters['params'][0])) {
       $resolver->setParams($parameters['params']);
     }
     
-    $resolver->setAction($parameters['action']);
+    $resolver->setActionName($parameters['action']);
     
     $response = $resolver->execute();
     $content = $response->getControllerContent();
