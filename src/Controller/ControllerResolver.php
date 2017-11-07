@@ -93,9 +93,11 @@ class ControllerResolver
       }
       
     } catch (\ReflectionException $exception) {
+      // in this case \ReflectionException means what method or class was not found
       throw new WebAppException($exception->getMessage());
     } catch (\Exception $exception) {
-      throw new RuntimeWebAppException($exception->getMessage());
+      // forwarding original exception
+      throw $exception;
     }
     
     return $this->response;
