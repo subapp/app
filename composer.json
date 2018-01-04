@@ -16,9 +16,9 @@
     "colibrilabs/parameters": "~0.1",
     "colibrilabs/annotations": "~1.1",
     "colibrilabs/http": "~0.1",
-    "colibrilabs/router": "~0.1",
+    "colibrilabs/router": "~0.2",
     "colibrilabs/uri": "~0.1",
-    "colibrilabs/url-generator": "~0.1",
+    "colibrilabs/url-generator": "~0.2",
     "colibrilabs/template": "~1.0",
     "colibrilabs/session": "~0.1",
     "colibrilabs/html": "~0.1"
