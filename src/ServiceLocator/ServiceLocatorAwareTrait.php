@@ -45,11 +45,6 @@ trait ServiceLocatorAwareTrait
 {
     
     /**
-     * @var ContainerInterface
-     */
-    protected $container;
-    
-    /**
      * @param $name
      * @return null|object
      * @throws RuntimeException
