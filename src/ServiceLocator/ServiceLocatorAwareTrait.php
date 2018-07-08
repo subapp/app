@@ -74,21 +74,13 @@ trait ServiceLocatorAwareTrait
     /**
      * @return ContainerInterface
      */
-    public function getContainer()
-    {
-        return $this->container;
-    }
+    abstract public function getContainer();
     
     /**
      * @param ContainerInterface $container
      * @return $this
      */
-    public function setContainer(ContainerInterface $container)
-    {
-        $this->container = $container;
-        
-        return $this;
-    }
+    abstract public function setContainer(ContainerInterface $container);
     
     /**
      * @return ParametersCollection
