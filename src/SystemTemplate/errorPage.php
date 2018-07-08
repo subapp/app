@@ -29,7 +29,6 @@
 <div class="box">
     <h1>[<?php echo get_class($exception); ?>]</h1>
     <h3><?php echo $exception->getMessage(); ?></h3>
-
     <pre><?php echo $exception->getTraceAsString(); ?></pre>
 </div>
 

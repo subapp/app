@@ -97,6 +97,14 @@ abstract class ConfigurableApplication extends Application
     }
     
     /**
+     * @return string
+     */
+    public function getSystemTemplateDirectory()
+    {
+        return __DIR__ . '/../SystemTemplate';
+    }
+    
+    /**
      * @return \Colibri\Http\Response
      */
     public function run()

@@ -21,7 +21,7 @@
     "colibrilabs/url-generator": "~0.2",
     "colibrilabs/template": "~1.3",
     "colibrilabs/session": "~0.1",
-    "colibrilabs/orm": "~1.13.0"
+    "colibrilabs/orm": "~1.14"
   },
   "autoload": {
     "psr-4": {
