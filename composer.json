@@ -12,21 +12,20 @@
   "type": "library",
   "require": {
     "php": ">=5.5",
-    "colibrilabs/service-locator": "~0.1",
+    "colibrilabs/service-locator": "~0.2",
     "colibrilabs/parameters": "~0.1",
-    "colibrilabs/annotations": "~1.1",
-    "colibrilabs/http": "~0.1",
+    "colibrilabs/annotations": "~1.2",
+    "colibrilabs/http": "~0.2",
     "colibrilabs/router": "~0.2",
     "colibrilabs/uri": "~0.1",
     "colibrilabs/url-generator": "~0.2",
-    "colibrilabs/template": "~1.0",
-    "colibrilabs/session": "~0.1",
-    "colibrilabs/html": "~0.1"
+    "colibrilabs/template": "~1.3",
+    "colibrilabs/session": "~0.1"
   },
   "autoload": {
     "psr-4": {
       "Colibri\\WebApp\\": "src/",
-      "App\\Controller\\": "test-app/controllers/"
+      "App\\Controller\\": "testRun/controllers/"
     }
   }
 }
