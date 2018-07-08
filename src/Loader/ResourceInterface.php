@@ -7,4 +7,5 @@ namespace Colibri\WebApp\Loader;
  * @package Colibri\WebApp\Loader
  */
 interface ResourceInterface
-{}
+{
+}

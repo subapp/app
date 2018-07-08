@@ -2,15 +2,14 @@
 
 namespace Colibri\WebApp;
 
-use Colibri\Parameters\ParametersCollection;
 use Colibri\Http\Response;
+use Colibri\Router\Router;
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\ServiceLocator\Service;
 use Colibri\WebApp\Controller\ActionExecutor;
 use Colibri\WebApp\Controller\ControllerResolver;
-use Colibri\Router\Router;
 use Colibri\WebApp\Exception\PageNotFoundException;
-use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\Exception\RuntimeException;
 
 /**
  * Class Application
@@ -56,7 +55,7 @@ class Application implements ServiceLocatorAware
     /**
      * @param $name
      * @return mixed
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function __get($name)
     {
@@ -64,20 +63,7 @@ class Application implements ServiceLocatorAware
             return $this->serviceLocator->get($name);
         }
         
-        throw new RuntimeWebAppException(sprintf('Cannot found service [%s] check if it registered', $name));
-    }
-    
-    /**
-     * @return ParametersCollection|\Colibri\Parameters\ParametersInterface
-     */
-    public static function sampleConfiguration()
-    {
-        $configurationFilePath = realpath(__DIR__ . '/../sample.configuration.php');
-        
-        $config = ParametersCollection::createFromFile($configurationFilePath);
-        $config['sample_config_file'] = $configurationFilePath;
-        
-        return $config;
+        throw new RuntimeException(sprintf('Cannot found service [%s] check if it registered', $name));
     }
     
     /**
@@ -95,7 +81,7 @@ class Application implements ServiceLocatorAware
             
             $resolver = new ControllerResolver($this->getContainer());
             $executor = new ActionExecutor($this->response, $resolver);
-    
+            
             $executor->setCompiler($this->view);
             
             $namespace = null === $router->getNamespace()

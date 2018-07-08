@@ -48,22 +48,6 @@ class ActionExecutor
     }
     
     /**
-     * @return ControllerResolver
-     */
-    public function getResolver()
-    {
-        return $this->resolver;
-    }
-    
-    /**
-     * @return TemplateInterface
-     */
-    public function getCompiler()
-    {
-        return $this->compiler ?? new NullTemplate();
-    }
-    
-    /**
      * @param Response $response
      */
     public function setResponse(Response $response)
@@ -72,11 +56,27 @@ class ActionExecutor
     }
     
     /**
+     * @return ControllerResolver
+     */
+    public function getResolver()
+    {
+        return $this->resolver;
+    }
+    
+    /**
      * @param ControllerResolver $resolver
      */
     public function setResolver(ControllerResolver $resolver)
     {
         $this->resolver = $resolver;
+    }
+    
+    /**
+     * @return TemplateInterface
+     */
+    public function getCompiler()
+    {
+        return $this->compiler ?? new NullTemplate();
     }
     
     /**
@@ -102,17 +102,17 @@ class ActionExecutor
     {
         $resolver = $this->getResolver();
         $response = $this->getResponse();
-    
-        $result     = $resolver->execute();
-        $content    = null;
-    
+        
+        $result = $resolver->execute();
+        $content = null;
+        
         // If content body is disabled for response, nothing to set in it
         // Used in case with redirect, for example
         if ($response->isEnableBody() === true) {
-        
+            
             $content = $result->getControllerContent();
             $controller = $result->getControllerInstance();
-        
+            
             // Special condition for handle controller templates
             if ($response->getBodyFormat() == Response::RESPONSE_HTML) {
                 // If controller action nothing return, we try render inner template
@@ -121,14 +121,14 @@ class ActionExecutor
                     $templatePath = "{$resolver->getControllerCamelize()}/{$resolver->getActionCamelize()}";
                     $content = $this->render($templatePath, $controller->getPseudoPath());
                 }
-            
+                
                 // If controller has main layout trying, we try wrap in it
                 if (null !== $controller->getLayout()) {
                     $content = $this->render($controller->getLayout(), null, ['content' => $content]);
                 }
             }
         }
-
+        
         return $content;
     }
     
@@ -140,9 +140,9 @@ class ActionExecutor
      */
     protected function render($path, $pseudoPath, array $data = [])
     {
-        $compiler   = $this->getCompiler();
-        $template   = (null === $pseudoPath) ? $path : "$pseudoPath::$path";
-        $content    = $compiler->fetch($template, $data);
+        $compiler = $this->getCompiler();
+        $template = (null === $pseudoPath) ? $path : "$pseudoPath::$path";
+        $content = $compiler->fetch($template, $data);
         
         return $content;
     }

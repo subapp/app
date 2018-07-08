@@ -20,7 +20,8 @@
     "colibrilabs/uri": "~0.1",
     "colibrilabs/url-generator": "~0.2",
     "colibrilabs/template": "~1.3",
-    "colibrilabs/session": "~0.1"
+    "colibrilabs/session": "~0.1",
+    "colibrilabs/orm": "~1.13.0"
   },
   "autoload": {
     "psr-4": {

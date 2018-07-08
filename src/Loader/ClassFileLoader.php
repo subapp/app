@@ -10,43 +10,44 @@ use Colibri\Loader\LoaderInterface;
  */
 class ClassFileLoader implements LoaderInterface
 {
-  
-  /**
-   * @inheritdoc
-   */
-  public function load($resource, $resourceType)
-  {
-    $classFile = new \SplFileObject($resource);
     
-    return $this->findClassName($classFile);
-  }
-  
-  /**
-   * @inheritdoc
-   */
-  public function isSupported($resource, $resourceType)
-  {
-    return is_file($resource) && is_readable($resource) && 'php' === substr($resource, -3);
-  }
-  
-  /**
-   * @param \SplFileObject $classFile
-   * @return string
-   */
-  protected function findClassName(\SplFileObject $classFile)
-  {
-    $namespace = null;
-    $className = $classFile->getBasename('.php');
-    
-    if ($classFile->isFile()) {
-      while (false !== ($line = $classFile->fgets())) {
-        if (false !== strpos($line, 'namespace')) {
-          list(, $namespace) = explode("\x20", $line); break;
-        }
-      }
+    /**
+     * @inheritdoc
+     */
+    public function load($resource, $resourceType)
+    {
+        $classFile = new \SplFileObject($resource);
+        
+        return $this->findClassName($classFile);
     }
     
-    return sprintf('%s\\%s', trim(trim($namespace), ";"), $className);
-  }
-  
+    /**
+     * @inheritdoc
+     */
+    public function isSupported($resource, $resourceType)
+    {
+        return is_file($resource) && is_readable($resource) && 'php' === substr($resource, -3);
+    }
+    
+    /**
+     * @param \SplFileObject $classFile
+     * @return string
+     */
+    protected function findClassName(\SplFileObject $classFile)
+    {
+        $namespace = null;
+        $className = $classFile->getBasename('.php');
+        
+        if ($classFile->isFile()) {
+            while (false !== ($line = $classFile->fgets())) {
+                if (false !== strpos($line, 'namespace')) {
+                    list(, $namespace) = explode("\x20", $line);
+                    break;
+                }
+            }
+        }
+        
+        return sprintf('%s\\%s', trim(trim($namespace), ";"), $className);
+    }
+    
 }

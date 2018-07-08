@@ -4,8 +4,8 @@ namespace Colibri\WebApp\Application;
 
 use Colibri\Annotations\Reader;
 use Colibri\Parameters\ParametersInterface;
-use Colibri\WebApp\Application;
 use Colibri\Template\Template;
+use Colibri\WebApp\Application;
 use Colibri\WebApp\Loader\Annotation\AnnotationClassLoader;
 use Colibri\WebApp\Loader\Annotation\AnnotationDirectoryLoader;
 use Colibri\WebApp\Loader\Annotation\AnnotationLoaderResolver;
@@ -35,27 +35,31 @@ abstract class ConfigurableApplication extends Application
     public function configure()
     {
         $this->config->handlePlaceholders();
-
+        
+        $container = $this->getContainer();
+        
         $configuration = new ApplicationConfiguration($this->config->toArray());
         $configuration->initialize();
+        
+        $container->set('config', $configuration);
         
         // configure required server values
         date_default_timezone_set($configuration->getTimezone());
         
         error_reporting($configuration->getErrorLevel());
         ini_set('display_errors', $configuration->getDisplayErrors());
-
+        
         // configure application
         $this->setControllerNamespace($configuration->getControllerNS());
         
         // URI configure
         $this->url->setBasePath($configuration->getURIBasePath());
         $this->url->setStaticPath($configuration->getURIStaticPath());
-    
+        
         if ($directory = $configuration->getTemplateDirectory()) {
             $this->serviceLocator->set('view', new Template($directory, iterator_to_array($this->serviceLocator)));
         }
-
+        
         $this->loadControllersAnnotations();
         
         $this->boot();
@@ -71,7 +75,7 @@ abstract class ConfigurableApplication extends Application
         if ($this->config->path('annotations.enabled')
             && null !== ($directory = $this->config->path('annotations.controllers.directory'))
             && false !== ($directory = realpath($directory))) {
-
+            
             $reader = new Reader();
             $parser = $reader->getParser();
             $parser->addNamespace('Colibri\\WebApp\\Annotation');

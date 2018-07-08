@@ -4,7 +4,7 @@ namespace Colibri\WebApp\Application;
 
 use Colibri\Collection\ProxyInterface;
 use Colibri\Parameters\ParametersCollection;
-use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\Exception\RuntimeException;
 
 /**
  * Class ApplicationConfiguration
@@ -13,18 +13,18 @@ use Colibri\WebApp\Exception\RuntimeWebAppException;
 class ApplicationConfiguration extends ParametersCollection implements ProxyInterface
 {
     
-    const KEY_SERVER = 'server';
+    const KEY_SERVER      = 'server';
     const KEY_APPLICATION = 'application';
     
     // server keys
-    const KEY_TIMEZONE = 'timezone';
+    const KEY_TIMEZONE       = 'timezone';
     const KEY_DISPLAY_ERRORS = 'displayErrors';
-    const KEY_ERROR_LEVEL = 'errorLevel';
+    const KEY_ERROR_LEVEL    = 'errorLevel';
     
     //application keys
     const KEY_CONTROLLER_NS = 'controller.defaultNamespace';
     
-    const KEY_URI_BASE = 'uri.base';
+    const KEY_URI_BASE   = 'uri.base';
     const KEY_URI_STATIC = 'uri.static';
     
     const KEY_TEMPLATE_DIRECTORY = 'template.root';
@@ -103,14 +103,14 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
      * @param      $key
      * @param bool $required
      * @return ParametersCollection|mixed|null
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function getValue($key, $required = true)
     {
         $value = $this->offsetGet($key);
         
         if (null === $value && $required) {
-            throw new RuntimeWebAppException(sprintf('Configuration key is required "%s"', $key));
+            throw new RuntimeException(sprintf('Configuration key is required "%s"', $key));
         }
         
         return $value;
@@ -144,7 +144,7 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
     
     /**
      * @return void
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function initialize()
     {
@@ -154,7 +154,7 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
             
             foreach ($keys as $key) {
                 if (!$this->offsetExists($key)) {
-                    throw new RuntimeWebAppException(sprintf('Configuration dont have a "%s" block', $key));
+                    throw new RuntimeException(sprintf('Configuration dont have a "%s" block', $key));
                 }
             }
             

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Colibri\WebApp\Controller;
 use Colibri\WebApp\Annotation\Route;
+use Colibri\WebApp\Web\Metatag;
 
 class IndexController extends Controller
 {
@@ -21,7 +22,7 @@ class IndexController extends Controller
      */
     public function indexAction($id = 0)
     {
-        die(__METHOD__);
+        die(var_dump(new Metatag()));
         $this->setLayout('layout');
     }
     

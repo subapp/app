@@ -6,7 +6,7 @@ use Colibri\Annotations\Reader;
 use Colibri\Loader\LoaderInterface;
 use Colibri\Loader\LoaderResolverInterface;
 use Colibri\WebApp\Annotation\AnnotationInterface;
-use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\Exception\RuntimeException;
 
 /**
  * Class AnnotationClassLoader
@@ -14,75 +14,75 @@ use Colibri\WebApp\Exception\RuntimeWebAppException;
  */
 class AnnotationClassLoader implements LoaderInterface
 {
-  
-  /**
-   * @var Reader
-   */
-  protected $reader;
-  
-  protected $resolver;
-  
-  /**
-   * AnnotationClassLoader constructor.
-   * @param LoaderResolverInterface $resolver
-   * @param Reader $reader
-   */
-  public function __construct(LoaderResolverInterface $resolver, Reader $reader)
-  {
-    $this->resolver = $resolver;
-    $this->reader = $reader;
-  }
-  
-  /**
-   * @param $resource
-   * @param $resourceType
-   * @return void
-   * @throws RuntimeWebAppException
-   */
-  public function load($resource, $resourceType)
-  {
-    if (!$resource instanceof \ReflectionClass) {
-      throw new RuntimeWebAppException(sprintf('%s accept only %s class as resource',
-        AnnotationClassLoader::class, \ReflectionClass::class));
+    
+    /**
+     * @var Reader
+     */
+    protected $reader;
+    
+    protected $resolver;
+    
+    /**
+     * AnnotationClassLoader constructor.
+     * @param LoaderResolverInterface $resolver
+     * @param Reader                  $reader
+     */
+    public function __construct(LoaderResolverInterface $resolver, Reader $reader)
+    {
+        $this->resolver = $resolver;
+        $this->reader = $reader;
     }
     
-    foreach ($this->reader->getClassAnnotations($resource) as $annotation) {
-      $this->configure($resource, $annotation);
+    /**
+     * @param $resource
+     * @param $resourceType
+     * @return void
+     * @throws RuntimeException
+     */
+    public function load($resource, $resourceType)
+    {
+        if (!$resource instanceof \ReflectionClass) {
+            throw new RuntimeException(sprintf('%s accept only %s class as resource',
+                AnnotationClassLoader::class, \ReflectionClass::class));
+        }
+        
+        foreach ($this->reader->getClassAnnotations($resource) as $annotation) {
+            $this->configure($resource, $annotation);
+        }
+        
+        foreach ($resource->getMethods() as $method) {
+            foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
+                $this->configure($method, $annotation);
+            }
+        }
+        
+        foreach ($resource->getProperties() as $property) {
+            foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
+                $this->configure($property, $annotation);
+            }
+        }
     }
     
-    foreach ($resource->getMethods() as $method) {
-      foreach ($this->reader->getMethodAnnotations($method) as $annotation) {
-        $this->configure($method, $annotation);
-      }
+    /**
+     * @param \Reflector          $reflection
+     * @param AnnotationInterface $annotation
+     * @return void
+     */
+    public function configure(\Reflector $reflection, AnnotationInterface $annotation)
+    {
+        if (null !== ($loader = $this->resolver->resolve($annotation, null))) {
+            $loader->load(new AnnotationResource($reflection, $annotation), null);
+        }
     }
-
-    foreach ($resource->getProperties() as $property) {
-      foreach ($this->reader->getPropertyAnnotations($property) as $annotation) {
-        $this->configure($property, $annotation);
-      }
+    
+    /**
+     * @param $resource
+     * @param $resourceType
+     * @return bool
+     */
+    public function isSupported($resource, $resourceType)
+    {
+        return $resource instanceof \ReflectionClass && (null === $resourceType || $resourceType === 'annotation');
     }
-  }
-  
-  /**
-   * @param \Reflector $reflection
-   * @param AnnotationInterface $annotation
-   * @return void
-   */
-  public function configure(\Reflector $reflection, AnnotationInterface $annotation)
-  {
-    if (null !== ($loader = $this->resolver->resolve($annotation, null))) {
-      $loader->load(new AnnotationResource($reflection, $annotation), null);
-    }
-  }
-  
-  /**
-   * @param $resource
-   * @param $resourceType
-   * @return bool
-   */
-  public function isSupported($resource, $resourceType)
-  {
-    return $resource instanceof \ReflectionClass && (null === $resourceType || $resourceType === 'annotation');
-  }
-  
+    
 }

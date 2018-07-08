@@ -7,4 +7,5 @@ namespace Colibri\WebApp\Exception;
  * @package Colibri\WebApp\Exception
  */
 class PageNotFoundException extends \Exception
-{}
+{
+}

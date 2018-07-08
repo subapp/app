@@ -4,7 +4,7 @@ namespace Colibri\WebApp\Controller;
 
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\WebApp\Controller;
-use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\Exception\RuntimeException;
 
 /**
  * Class ControllerResolver
@@ -55,7 +55,7 @@ class ControllerResolver
     
     /**
      * @return ControllerResponse
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function execute()
     {
@@ -84,7 +84,7 @@ class ControllerResolver
             $controller->afterExecute();
             
         } else {
-            throw new RuntimeWebAppException('Controller found but it should implemented interface [:name]', [
+            throw new RuntimeException('Controller found but it should implemented interface [:name]', [
                 'name' => ControllerInterface::class,
             ]);
         }

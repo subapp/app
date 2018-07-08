@@ -5,9 +5,9 @@ namespace Colibri\WebApp;
 use Colibri\Http\Response;
 use Colibri\ServiceLocator\ContainerInterface;
 use Colibri\WebApp\Controller\ActionExecutor;
-use Colibri\WebApp\Controller\ControllerResolver;
 use Colibri\WebApp\Controller\ControllerInterface;
-use Colibri\WebApp\Exception\RuntimeWebAppException;
+use Colibri\WebApp\Controller\ControllerResolver;
+use Colibri\WebApp\Exception\RuntimeException;
 
 abstract class Controller implements ControllerInterface
 {
@@ -63,7 +63,7 @@ abstract class Controller implements ControllerInterface
      */
     public function __construct()
     {
-    
+        
     }
     
     /**
@@ -86,40 +86,40 @@ abstract class Controller implements ControllerInterface
     /**
      * @param $name
      * @return mixed
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function __get($name)
     {
         if (static::$container->has($name)) {
             return static::$container->get($name);
         } else {
-            throw new RuntimeWebAppException("Service '{$name}' not found on default container");
+            throw new RuntimeException("Service '{$name}' not found on default container");
         }
     }
     
     /**
      * @param array $parameters
      * @return mixed
-     * @throws RuntimeWebAppException
+     * @throws RuntimeException
      */
     public function execute(array $parameters = [])
     {
         if (!isset($parameters['action'])) {
-            throw new RuntimeWebAppException("For hierarchically calling controller method parameter 'action' is required");
+            throw new RuntimeException("For hierarchically calling controller method parameter 'action' is required");
         }
-    
+        
         // controller resolver
         $resolver = new ControllerResolver($this->getContainer());
         
         // action executor
         $executor = new ActionExecutor($this->response, $resolver);
         $executor->setCompiler($this->view);
-
+        
         // resolver initialization
         $resolver->setNamespace($parameters['namespace'] ?? $this->getNamespace());
         $resolver->setControllerClassName($parameters['controller'] ?? $this->getName());
         $resolver->setActionName($parameters['action']);
-    
+        
         if (isset($parameters['params'], $parameters['params'][0])) {
             $resolver->setParams($parameters['params']);
         }
