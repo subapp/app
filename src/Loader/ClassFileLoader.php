@@ -39,7 +39,8 @@ class ClassFileLoader implements LoaderInterface
         $className = $classFile->getBasename('.php');
         
         if ($classFile->isFile()) {
-            while (false !== ($line = $classFile->fgets())) {
+            while (false === $classFile->eof()) {
+                $line = $classFile->fgets();
                 if (false !== strpos($line, 'namespace')) {
                     list(, $namespace) = explode("\x20", $line);
                     break;
