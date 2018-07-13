@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20c4742bf946ee01cb8e2b9844be0615",
+    "content-hash": "daa3fa5a13e545e3beb07a3af5505aee",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -344,21 +344,23 @@
         },
         {
             "name": "colibrilabs/orm",
-            "version": "v1.13.0",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColibriLabs/ORM.git",
-                "reference": "9570e387f02e25c933e8cc86e786e3127f006e07"
+                "reference": "148c98f29c3ee13f6eaa89e749bc9d5e23158084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ColibriLabs/ORM/zipball/9570e387f02e25c933e8cc86e786e3127f006e07",
-                "reference": "9570e387f02e25c933e8cc86e786e3127f006e07",
+                "url": "https://api.github.com/repos/ColibriLabs/ORM/zipball/148c98f29c3ee13f6eaa89e749bc9d5e23158084",
+                "reference": "148c98f29c3ee13f6eaa89e749bc9d5e23158084",
                 "shasum": ""
             },
             "require": {
                 "behat/transliterator": "~1.1",
-                "colibrilabs/collection": "~0.1",
+                "colibrilabs/annotations": "~1.2",
+                "colibrilabs/cache": "~1.0",
+                "colibrilabs/collection": "~0.2",
                 "colibrilabs/html": "~0.1",
                 "colibrilabs/parameters": "~0.1",
                 "php": ">=5.6",
@@ -380,8 +382,8 @@
             "authors": [
                 {
                     "name": "Ivan Hontarenko",
-                    "email": "stewie.dev@gmail.com",
-                    "homepage": "http://cv.dezz.pro/",
+                    "email": "ihontarenko@gmail.com",
+                    "homepage": "https://ihontarenko.dotweb.space/",
                     "role": "Developer"
                 }
             ],
@@ -391,7 +393,7 @@
                 "colibri orm",
                 "php orm"
             ],
-            "time": "2018-01-24T11:04:25+00:00"
+            "time": "2018-07-10T08:16:48+00:00"
         },
         {
             "name": "colibrilabs/parameters",

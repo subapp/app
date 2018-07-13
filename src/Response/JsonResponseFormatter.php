@@ -25,34 +25,37 @@ class JsonResponseFormatter extends Format
     }
     
     /**
-     * @return JsonMessages\Response
+     * @return JsonMessages\AbstractResponse
      * @throws \Colibri\Http\Exception
      */
     private function createResponseBody()
     {
-        $response = $this->response->getContent();
+        $response   = $this->response;
+        $content    = $response->getContent();
         
-        if ($response instanceof \Throwable) {
-            $response = new JsonMessages\ExceptionResponse($response);
-            $response->setStatusCode(Http\Response::SERVER_INTERNAL_ERROR);
+        if ($content instanceof \Throwable) {
+            $content = new JsonMessages\ExceptionResponse($content);
         }
         
-        if (!($response instanceof JsonMessages\Response)) {
-            $response = new JsonMessages\ErrorResponse(sprintf(
+        if (!($content instanceof JsonMessages\AbstractResponse)) {
+            $content = new JsonMessages\ErrorResponse(Http\Response::SERVER_INTERNAL_ERROR, sprintf(
                 'Unexpected response from controller method. Should be object which extends %s class "%s" passed',
-                JsonMessages\Response::class, gettype($response)));
-            $response->setStatusCode(Http\Response::SERVER_INTERNAL_ERROR);
+                JsonMessages\AbstractResponse::class, gettype($content)));
         }
         
-        if (false === (boolean)$response->getStatusCode()) {
-            $response->setStatusCode($this->response->getStatusCode());
-        } else {
-            $this->response->setStatusCode($response->getStatusCode());
+        $reflection = new \ReflectionObject($content);
+        
+        if ($reflection->hasProperty('code')) {
+            $property           = $reflection->getProperty('code');
+            $statusCode         = (integer)$property->getValue($content);
+            $isDifferentCode    = ($response->getStatusCode() !== $statusCode);
+            
+            if ($isDifferentCode) {
+                $response->setStatusCode($statusCode);
+            }
         }
         
-        $response->setStatusMessage($this->response->getStatusMessage($response->getStatusCode()));
-        
-        return $response;
+        return $content;
     }
     
 }

@@ -2,18 +2,35 @@
 
 namespace Colibri\WebApp\Response\JsonMessages;
 
+use Colibri\Http\Response as HttpResponse;
+
 /**
- * Class ErrorResponse
- * @package Colibri\Webapp\Response\JsonMessages
+ * Class Error
+ * @package Colibri\WebApp\Response\JsonMessages
  */
-class ErrorResponse extends Response
+class ErrorResponse extends AbstractResponse
 {
+    
     /**
-     * @inheritDoc
+     * @var int
      */
-    public function __construct($message = null, $code = 0)
+    public $code    = HttpResponse::SERVER_INTERNAL_ERROR;
+    
+    /**
+     * @var null|array
+     */
+    public $error = null;
+    
+    /**
+     * Response constructor.
+     *
+     * @param integer $code
+     * @param string $error
+     */
+    public function __construct($code, $error)
     {
-        parent::__construct(null, ['message' => $message, 'result' => null], $code);
+        $this->code = $code;
+        $this->error = $error;
     }
     
 }

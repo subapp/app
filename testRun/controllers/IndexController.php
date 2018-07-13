@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use Colibri\Http\Response;
 use Colibri\WebApp\Controller;
 use Colibri\WebApp\Annotation\Route;
-use Colibri\WebApp\Web\Metatag;
+use Colibri\WebApp\Response\JsonMessages\ExceptionResponse;
+use Colibri\WebApp\Response\JsonResponseFormatter;
+use RuntimeException;
 
 class IndexController extends Controller
 {
@@ -17,13 +20,15 @@ class IndexController extends Controller
     }
     
     /**
-     * @Route(pattern="/test/123", method=@Method(methods='POST'))
+     * @Route(pattern="/", method=@Method(methods='POST'))
      * @param int $id
+     *
+     * @return RuntimeException
      */
     public function indexAction($id = 0)
     {
-        die(var_dump(new Metatag()));
-        $this->setLayout('layout');
+        $this->response->setBodyFormat(Response::RESPONSE_CUSTOM, JsonResponseFormatter::class);
+        return new ExceptionResponse(new RuntimeException(__METHOD__, 500), true);
     }
     
     /**
