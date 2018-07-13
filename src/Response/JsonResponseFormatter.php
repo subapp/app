@@ -49,9 +49,12 @@ class JsonResponseFormatter extends Format
             $property           = $reflection->getProperty('code');
             $statusCode         = (integer)$property->getValue($content);
             $isDifferentCode    = ($response->getStatusCode() !== $statusCode);
+            $isAllowedCode      = ($statusCode >= 100 && $statusCode <= 599);
             
-            if ($isDifferentCode && $statusCode >= 100 && $statusCode <= 599) {
+            if ($isDifferentCode && $isAllowedCode) {
                 $response->setStatusCode($statusCode);
+            } elseif ($isAllowedCode === false) {
+                $property->setValue($content, $response->getStatusCode());
             }
         }
         
