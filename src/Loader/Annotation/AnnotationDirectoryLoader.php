@@ -34,11 +34,24 @@ class AnnotationDirectoryLoader extends DirectoryClassFileLoader
         $collection = new ArrayCollection();
         
         foreach (parent::load($resource, $resourceType) as $className) {
-            $reflection = new \ReflectionClass($className);
-            $this->classLoader->load($reflection, null);
+            if ($this->isSupported($className, null)) {
+                $reflection = new \ReflectionClass($className);
+                $this->classLoader->load($reflection, null);
+            }
         }
         
         return $collection;
     }
     
+    /**
+     * @param $resource
+     * @param $resourceType
+     *
+     * @return bool
+     */
+    public function isSupported($resource, $resourceType)
+    {
+        return class_exists($resource);
+    }
+  
 }

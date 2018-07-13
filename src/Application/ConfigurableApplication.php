@@ -80,7 +80,7 @@ abstract class ConfigurableApplication extends Application
             $parser = $reader->getParser();
             $parser->addNamespace('Colibri\\WebApp\\Annotation');
             
-            if (is_array($namespaces = $this->config->path('annotations.namespaces'))) {
+            if (is_iterable($namespaces = $this->config->path('annotations.namespaces'))) {
                 foreach ($namespaces as $namespace) {
                     $parser->addNamespace($namespace);
                 }
