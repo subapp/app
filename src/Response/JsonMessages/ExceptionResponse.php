@@ -2,6 +2,8 @@
 
 namespace Colibri\WebApp\Response\JsonMessages;
 
+use Colibri\Http\Response as HttpResponse;
+
 /**
  * Class ExceptionResponse
  * @package Colibri\Webapp\Response\JsonMessages
