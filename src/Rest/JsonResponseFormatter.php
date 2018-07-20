@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Response;
+namespace Colibri\WebApp\Rest;
 
 use Colibri\Http;
 use Colibri\Http\Response\Format;
-use Colibri\WebApp\Response\JsonMessages;
+use Colibri\WebApp\Rest\JsonMessages;
 
 /**
  * Class JsonResponseFormatter
@@ -26,7 +26,6 @@ class JsonResponseFormatter extends Format
     
     /**
      * @return JsonMessages\AbstractResponse
-     * @throws \Colibri\Http\Exception
      */
     private function createResponseBody()
     {

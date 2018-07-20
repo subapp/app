@@ -1,6 +1,6 @@
 <?php
 
-namespace Colibri\WebApp\Response\JsonMessages;
+namespace Colibri\WebApp\Rest\JsonMessages;
 
 use Colibri\Http\Response as HttpResponse;
 

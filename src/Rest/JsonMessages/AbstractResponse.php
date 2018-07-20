@@ -1,6 +1,6 @@
 <?php
 
-namespace Colibri\WebApp\Response\JsonMessages;
+namespace Colibri\WebApp\Rest\JsonMessages;
 
 /**
  * Class AbstractResponse
