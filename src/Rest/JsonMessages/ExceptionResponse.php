@@ -17,18 +17,29 @@ class ExceptionResponse extends ErrorResponse
     public $stackTrace;
     
     /**
-     * @inheritDoc
+     * @var string
      */
-    public function __construct(\Throwable $exception, $withStackTrace = false)
+    public $exceptionClassName;
+    
+    /**
+     * ExceptionResponse constructor.
+     * @param \Throwable $exception
+     * @param bool       $withClassName
+     * @param bool       $withStackTrace
+     */
+    public function __construct(\Throwable $exception, $withClassName = false, $withStackTrace = false)
     {
         $reflection         = new \ReflectionObject($exception);
         $statusCode         = $exception->getCode() ?: HttpResponse::SERVER_INTERNAL_ERROR;
-        $exceptionMessage   = sprintf('[%s]: %s', $reflection->getShortName(), $exception->getMessage());
-        
-        parent::__construct($statusCode, $exceptionMessage);
+
+        parent::__construct($statusCode, $exception->getMessage());
         
         if ($withStackTrace) {
             $this->stackTrace = $exception->getTraceAsString();
+        }
+    
+        if ($withClassName) {
+            $this->exceptionClassName = $reflection->getShortName();
         }
     }
     

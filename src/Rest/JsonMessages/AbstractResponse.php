@@ -2,12 +2,16 @@
 
 namespace Colibri\WebApp\Rest\JsonMessages;
 
+use Colibri\WebApp\Rest\JsonMessages\Helper\ModelNameAwareTrait;
+
 /**
  * Class AbstractResponse
  * @package Colibri\Webapp\Response\JsonMessages
  */
 abstract class AbstractResponse implements \JsonSerializable
 {
+    
+    use ModelNameAwareTrait;
     
     /**
      * @return array

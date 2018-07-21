@@ -8,7 +8,7 @@ use Colibri\Http\Response as HttpResponse;
  * Class Response
  * @package Colibri\WebApp\Response\JsonMessages
  */
-class Response extends AbstractResponse
+class ContentResponse extends AbstractResponse
 {
     
     /**
