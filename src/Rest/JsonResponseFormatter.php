@@ -1,14 +1,14 @@
 <?php
 
-namespace Colibri\WebApp\Rest;
+namespace Subapp\WebApp\Rest;
 
-use Colibri\Http;
-use Colibri\Http\Response\Format;
-use Colibri\WebApp\Rest\JsonMessages;
+use Subapp\Http;
+use Subapp\Http\Response\Format;
+use Subapp\WebApp\Rest\JsonMessages;
 
 /**
  * Class JsonResponseFormatter
- * @package Colibri\Webapp\Response
+ * @package Subapp\Webapp\Response
  */
 class JsonResponseFormatter extends Format
 {

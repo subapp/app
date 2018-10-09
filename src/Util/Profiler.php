@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Util;
+namespace Subapp\WebApp\Util;
 
 /**
  * Class Profiler
- * @package Colibri\Webapp\Util
+ * @package Subapp\Webapp\Util
  */
 class Profiler
 {

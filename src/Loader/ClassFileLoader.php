@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Loader;
+namespace Subapp\WebApp\Loader;
 
-use Colibri\Loader\LoaderInterface;
+use Subapp\Loader\LoaderInterface;
 
 /**
  * Class ClassFileLoader
- * @package Colibri\WebApp\Loader
+ * @package Subapp\WebApp\Loader
  */
 class ClassFileLoader implements LoaderInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\Loader\LoaderInterface;
-use Colibri\Loader\LoaderResolverInterface;
+use Subapp\Loader\LoaderInterface;
+use Subapp\Loader\LoaderResolverInterface;
 
 /**
  * Class AnnotationLoaderResolver
- * @package Colibri\WebApp\Loader\Annotation
+ * @package Subapp\WebApp\Loader\Annotation
  */
 class AnnotationLoaderResolver implements LoaderResolverInterface
 {

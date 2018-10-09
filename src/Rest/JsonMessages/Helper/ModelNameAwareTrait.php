@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Rest\JsonMessages\Helper;
+namespace Subapp\WebApp\Rest\JsonMessages\Helper;
 
 /**
  * Trait ModelNameAwareTrait
- * @package Colibri\WebApp\Rest\JsonMessages\Helper
+ * @package Subapp\WebApp\Rest\JsonMessages\Helper
  */
 trait ModelNameAwareTrait
 {

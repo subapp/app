@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Mvc;
+namespace Subapp\WebApp\Mvc;
 
-use Colibri\WebApp\Auth\AuthorizationCheckerTrait;
+use Subapp\WebApp\Auth\AuthorizationCheckerTrait;
 
 /**
  * Class ControllerSecured
- * @package Colibri\Webapp\WebApp
+ * @package Subapp\Webapp\WebApp
  */
 class ControllerSecured extends AbstractController
 {

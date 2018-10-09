@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Rest\JsonMessages;
+namespace Subapp\WebApp\Rest\JsonMessages;
 
-use Colibri\WebApp\Rest\JsonMessages\Helper\ModelNameAwareTrait;
+use Subapp\WebApp\Rest\JsonMessages\Helper\ModelNameAwareTrait;
 
 /**
  * Class AbstractResponse
- * @package Colibri\Webapp\Response\JsonMessages
+ * @package Subapp\Webapp\Response\JsonMessages
  */
 abstract class AbstractResponse implements \JsonSerializable
 {

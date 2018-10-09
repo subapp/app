@@ -1,11 +1,11 @@
 <?php
 
-namespace Colibri\WebApp\Util;
+namespace Subapp\WebApp\Util;
 
 /**
  * Class Image
  *
- * @package Colibri\Webapp\Util
+ * @package Subapp\Webapp\Util
  */
 class Image
 {

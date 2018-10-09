@@ -1,14 +1,14 @@
 <?php
 
-namespace Colibri\WebApp\Controller;
+namespace Subapp\WebApp\Controller;
 
-use Colibri\Http\Response;
-use Colibri\Template\NullTemplate;
-use Colibri\Template\TemplateInterface;
+use Subapp\Http\Response;
+use Subapp\Template\NullTemplate;
+use Subapp\Template\TemplateInterface;
 
 /**
  * Class ActionExecutor
- * @package Colibri\WebApp\Controller
+ * @package Subapp\WebApp\Controller
  */
 class ActionExecutor
 {

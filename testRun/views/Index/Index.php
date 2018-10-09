@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var \Colibri\Template\Core\Compiler $this
+ * @var \Subapp\Template\Core\Compiler $this
  * @var string $content
  */
 

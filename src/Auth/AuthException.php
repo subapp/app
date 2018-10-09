@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Auth;
+namespace Subapp\WebApp\Auth;
 
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\WebApp\Exception\RuntimeException;
 
 /**
  * Class AuthException
  *
- * @package Colibri\Webapp\Auth
+ * @package Subapp\Webapp\Auth
  */
 class AuthException extends RuntimeException
 {

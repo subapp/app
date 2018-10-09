@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Rest\JsonMessages;
+namespace Subapp\WebApp\Rest\JsonMessages;
 
-use Colibri\Http\Response as HttpResponse;
+use Subapp\Http\Response as HttpResponse;
 
 /**
  * Class ExceptionResponse
- * @package Colibri\Webapp\Response\JsonMessages
+ * @package Subapp\Webapp\Response\JsonMessages
  */
 class ExceptionResponse extends ErrorResponse
 {

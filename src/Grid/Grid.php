@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Grid;
+namespace Subapp\WebApp\Grid;
 
-use Colibri\URI\Builder as Url;
+use Subapp\URI\Builder as Url;
 
 /**
  *
  * Class Grid
- * @package Colibri\Webapp\Grid
+ * @package Subapp\Webapp\Grid
  */
 class Grid
 {

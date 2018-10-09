@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\WebApp\Loader\ClassFileLoader;
+use Subapp\WebApp\Loader\ClassFileLoader;
 
 /**
  * Class AnnotationFileLoader
- * @package Colibri\WebApp\Loader\Annotation
+ * @package Subapp\WebApp\Loader\Annotation
  */
 class AnnotationFileLoader extends ClassFileLoader
 {

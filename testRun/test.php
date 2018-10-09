@@ -1,7 +1,7 @@
 <?php
 
-use Colibri\WebApp\Application;
-use Colibri\WebApp\ApplicationContainer;
+use Subapp\WebApp\Application;
+use Subapp\WebApp\ApplicationContainer;
 
 include_once '../vendor/autoload.php';
 

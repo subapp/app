@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\Collection\ArrayCollection;
-use Colibri\WebApp\Loader\DirectoryClassFileLoader;
+use Subapp\Collection\ArrayCollection;
+use Subapp\WebApp\Loader\DirectoryClassFileLoader;
 
 /**
  * Class AnnotationDirectoryLoader
- * @package Colibri\WebApp\Loader\Annotation
+ * @package Subapp\WebApp\Loader\Annotation
  */
 class AnnotationDirectoryLoader extends DirectoryClassFileLoader
 {

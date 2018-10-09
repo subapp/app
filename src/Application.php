@@ -1,19 +1,19 @@
 <?php
 
-namespace Colibri\WebApp;
+namespace Subapp\WebApp;
 
-use Colibri\Http\Response;
-use Colibri\Router\Router;
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\ServiceLocator\Service;
-use Colibri\WebApp\Controller\ActionExecutor;
-use Colibri\WebApp\Controller\ControllerResolver;
-use Colibri\WebApp\Exception\PageNotFoundException;
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\Http\Response;
+use Subapp\Router\Router;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\ServiceLocator\Service;
+use Subapp\WebApp\Controller\ActionExecutor;
+use Subapp\WebApp\Controller\ControllerResolver;
+use Subapp\WebApp\Exception\PageNotFoundException;
+use Subapp\WebApp\Exception\RuntimeException;
 
 /**
  * Class Application
- * @package Colibri\WebApp
+ * @package Subapp\WebApp
  */
 class Application implements ServiceLocatorAware
 {

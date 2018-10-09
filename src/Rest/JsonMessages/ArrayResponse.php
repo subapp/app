@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Rest\JsonMessages;
+namespace Subapp\WebApp\Rest\JsonMessages;
 
 /**
  * Class FlatArrayResponse
- * @package Colibri\WebApp\Rest\JsonMessages
+ * @package Subapp\WebApp\Rest\JsonMessages
  */
 class ArrayResponse extends AbstractResponse
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Controller;
+namespace Subapp\WebApp\Controller;
 
 /**
  * Class ControllerResponse
- * @package Colibri\WebApp\Controller
+ * @package Subapp\WebApp\Controller
  */
 class ControllerResponse
 {

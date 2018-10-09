@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\WebApp\Annotation\AnnotationInterface;
-use Colibri\WebApp\Loader\ResourceInterface;
+use Subapp\WebApp\Annotation\AnnotationInterface;
+use Subapp\WebApp\Loader\ResourceInterface;
 
 /**
  * Class AnnotationResource
- * @package Colibri\WebApp\Annotation
+ * @package Subapp\WebApp\Annotation
  */
 class AnnotationResource implements ResourceInterface
 {

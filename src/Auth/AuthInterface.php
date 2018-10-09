@@ -1,11 +1,11 @@
 <?php
 
-namespace Colibri\WebApp\Auth;
+namespace Subapp\WebApp\Auth;
 
 /**
  * Interface AuthInterface
  *
- * @package Colibri\Webapp\Auth
+ * @package Subapp\Webapp\Auth
  */
 interface AuthInterface
 {

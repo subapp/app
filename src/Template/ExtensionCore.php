@@ -1,22 +1,22 @@
 <?php
 
-namespace Colibri\WebApp\Template;
+namespace Subapp\WebApp\Template;
 
-use Colibri\Template\Core\ExtensionInterface;
-use Colibri\Template\Template;
-use Colibri\UrlGenerator\UrlBuilder;
-use Colibri\WebApp\ApplicationContainer;
+use Subapp\Template\Core\ExtensionInterface;
+use Subapp\Template\Template;
+use Subapp\UrlGenerator\UrlBuilder;
+use Subapp\WebApp\ApplicationContainer;
 
 /**
  * Class ExtensionCore
- * @package Colibri\Webapp\Template
+ * @package Subapp\Webapp\Template
  */
 class ExtensionCore implements ExtensionInterface
 {
     
     /**
      * @param Template $template
-     * @throws \Colibri\Template\TemplateException
+     * @throws \Subapp\Template\TemplateException
      */
     public function register(Template $template)
     {

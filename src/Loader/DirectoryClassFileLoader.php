@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Loader;
+namespace Subapp\WebApp\Loader;
 
-use Colibri\Collection\ArrayCollection;
+use Subapp\Collection\ArrayCollection;
 
 /**
  * Class DirectoryClassFileLoader
- * @package Colibri\WebApp\Loader
+ * @package Subapp\WebApp\Loader
  */
 class DirectoryClassFileLoader extends ClassFileLoader
 {

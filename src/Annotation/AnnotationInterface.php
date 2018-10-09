@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Annotation;
+namespace Subapp\WebApp\Annotation;
 
 /**
  * Interface AnnotationInterface
- * @package Colibri\WebApp\Annotation
+ * @package Subapp\WebApp\Annotation
  */
 interface AnnotationInterface
 {

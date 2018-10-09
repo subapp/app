@@ -1,14 +1,14 @@
 <?php
 
-namespace Colibri\WebApp\Controller;
+namespace Subapp\WebApp\Controller;
 
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\WebApp\Controller;
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\WebApp\Controller;
+use Subapp\WebApp\Exception\RuntimeException;
 
 /**
  * Class ControllerResolver
- * @package Colibri\WebApp\Controller
+ * @package Subapp\WebApp\Controller
  */
 class ControllerResolver
 {

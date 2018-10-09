@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use Colibri\Http\Response;
-use Colibri\WebApp\Controller;
-use Colibri\WebApp\Annotation\Route;
-use Colibri\WebApp\Rest\JsonMessages\ExceptionResponse;
-use Colibri\WebApp\Rest\JsonResponseFormatter;
+use Subapp\Http\Response;
+use Subapp\WebApp\Controller;
+use Subapp\WebApp\Annotation\Route;
+use Subapp\WebApp\Rest\JsonMessages\ExceptionResponse;
+use Subapp\WebApp\Rest\JsonResponseFormatter;
 
 class IndexController extends Controller
 {

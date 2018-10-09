@@ -1,16 +1,16 @@
 <?php
 
-namespace Colibri\WebApp\Web;
+namespace Subapp\WebApp\Web;
 
-use Colibri\Collection\ArrayCollection as Collection;
-use Colibri\Html\Element\LinkElement;
-use Colibri\Html\Element\ScriptElement;
-use Colibri\Html\Element\StyleElement;
-use Colibri\URI\Builder as Url;
+use Subapp\Collection\ArrayCollection as Collection;
+use Subapp\Html\Element\LinkElement;
+use Subapp\Html\Element\ScriptElement;
+use Subapp\Html\Element\StyleElement;
+use Subapp\URI\Builder as Url;
 
 /**
  * Class Assets
- * @package Colibri\Webapp\Web
+ * @package Subapp\Webapp\Web
  */
 class Assets extends Collection
 {

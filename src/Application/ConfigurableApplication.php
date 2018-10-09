@@ -1,19 +1,19 @@
 <?php
 
-namespace Colibri\WebApp\Application;
+namespace Subapp\WebApp\Application;
 
-use Colibri\Annotations\Reader;
-use Colibri\Parameters\ParametersInterface;
-use Colibri\Template\Template;
-use Colibri\WebApp\Application;
-use Colibri\WebApp\Loader\Annotation\AnnotationClassLoader;
-use Colibri\WebApp\Loader\Annotation\AnnotationDirectoryLoader;
-use Colibri\WebApp\Loader\Annotation\AnnotationLoaderResolver;
-use Colibri\WebApp\Loader\Annotation\RouteAnnotationLoader;
+use Subapp\Annotations\Reader;
+use Subapp\Parameters\ParametersInterface;
+use Subapp\Template\Template;
+use Subapp\WebApp\Application;
+use Subapp\WebApp\Loader\Annotation\AnnotationClassLoader;
+use Subapp\WebApp\Loader\Annotation\AnnotationDirectoryLoader;
+use Subapp\WebApp\Loader\Annotation\AnnotationLoaderResolver;
+use Subapp\WebApp\Loader\Annotation\RouteAnnotationLoader;
 
 /**
  * Class ConfigurableApplication
- * @package Colibri\WebApp\Application
+ * @package Subapp\WebApp\Application
  */
 abstract class ConfigurableApplication extends Application
 {
@@ -78,7 +78,7 @@ abstract class ConfigurableApplication extends Application
             
             $reader = new Reader();
             $parser = $reader->getParser();
-            $parser->addNamespace('Colibri\\WebApp\\Annotation');
+            $parser->addNamespace('Subapp\\WebApp\\Annotation');
             
             if (is_iterable($namespaces = $this->config->path('annotations.namespaces'))) {
                 foreach ($namespaces as $namespace) {
@@ -105,7 +105,7 @@ abstract class ConfigurableApplication extends Application
     }
     
     /**
-     * @return \Colibri\Http\Response
+     * @return \Subapp\Http\Response
      */
     public function run()
     {

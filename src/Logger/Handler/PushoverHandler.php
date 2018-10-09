@@ -1,15 +1,15 @@
 <?php
 
-namespace Colibri\WebApp\Logger\Handler;
+namespace Subapp\WebApp\Logger\Handler;
 
-use Colibri\Logger\Collection\Collection;
-use Colibri\Logger\Formatter\LineFormatter;
-use Colibri\Logger\Handler\AbstractHandler;
-use Colibri\Logger\Handler\Mask\LogLevelMask;
+use Subapp\Logger\Collection\Collection;
+use Subapp\Logger\Formatter\LineFormatter;
+use Subapp\Logger\Handler\AbstractHandler;
+use Subapp\Logger\Handler\Mask\LogLevelMask;
 
 /**
  * Class PushoverHandler
- * @package Colibri\Webapp\Logger\Handler
+ * @package Subapp\Webapp\Logger\Handler
  */
 class PushoverHandler extends AbstractHandler
 {

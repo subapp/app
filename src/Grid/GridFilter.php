@@ -1,11 +1,11 @@
 <?php
 
-namespace Colibri\WebApp\Grid;
+namespace Subapp\WebApp\Grid;
 
 /**
  * Class GridFilter
  *
- * @package Colibri\Webapp\Grid
+ * @package Subapp\Webapp\Grid
  */
 class GridFilter
 {

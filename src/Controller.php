@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp;
+namespace Subapp\WebApp;
 
-use Colibri\Http\Response;
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\WebApp\Controller\ActionExecutor;
-use Colibri\WebApp\Controller\ControllerInterface;
-use Colibri\WebApp\Controller\ControllerResolver;
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\Http\Response;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\WebApp\Controller\ActionExecutor;
+use Subapp\WebApp\Controller\ControllerInterface;
+use Subapp\WebApp\Controller\ControllerResolver;
+use Subapp\WebApp\Exception\RuntimeException;
 
 abstract class Controller implements ControllerInterface
 {

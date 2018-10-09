@@ -1,16 +1,16 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\Annotations\Reader;
-use Colibri\Loader\LoaderInterface;
-use Colibri\Loader\LoaderResolverInterface;
-use Colibri\WebApp\Annotation\AnnotationInterface;
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\Annotations\Reader;
+use Subapp\Loader\LoaderInterface;
+use Subapp\Loader\LoaderResolverInterface;
+use Subapp\WebApp\Annotation\AnnotationInterface;
+use Subapp\WebApp\Exception\RuntimeException;
 
 /**
  * Class AnnotationClassLoader
- * @package Colibri\WebApp\Loader\Annotation
+ * @package Subapp\WebApp\Loader\Annotation
  */
 class AnnotationClassLoader implements LoaderInterface
 {

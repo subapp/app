@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Auth;
+namespace Subapp\WebApp\Auth;
 
-use Colibri\Http\Response;
-use Colibri\WebApp\Mvc\ControllerSecured;
+use Subapp\Http\Response;
+use Subapp\WebApp\Mvc\ControllerSecured;
 
 /**
  * Class AuthorizationCheckerTrait
- * @package Colibri\Webapp\Auth
+ * @package Subapp\Webapp\Auth
  */
 trait AuthorizationCheckerTrait
 {

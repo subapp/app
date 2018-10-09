@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Exception;
+namespace Subapp\WebApp\Exception;
 
 /**
  * Class RuntimeWebAppException
- * @package Colibri\WebApp\Exception
+ * @package Subapp\WebApp\Exception
  */
 class RuntimeException extends ReplaceException
 {

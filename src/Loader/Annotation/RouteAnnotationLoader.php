@@ -1,15 +1,15 @@
 <?php
 
-namespace Colibri\WebApp\Loader\Annotation;
+namespace Subapp\WebApp\Loader\Annotation;
 
-use Colibri\Loader\LoaderInterface;
-use Colibri\Router\Router;
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\WebApp\Annotation\Route;
+use Subapp\Loader\LoaderInterface;
+use Subapp\Router\Router;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\WebApp\Annotation\Route;
 
 /**
  * Class RouteAnnotationLoader
- * @package Colibri\WebApp\Loader\Annotation
+ * @package Subapp\WebApp\Loader\Annotation
  */
 class RouteAnnotationLoader implements LoaderInterface
 {

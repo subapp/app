@@ -1,23 +1,23 @@
 <?php
 
-namespace Colibri\WebApp;
+namespace Subapp\WebApp;
 
-use Colibri\Http\Cookies;
-use Colibri\Http\Request;
-use Colibri\Http\Response;
-use Colibri\Parameters\ParametersCollection;
-use Colibri\Router\Router;
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\Session\Adapter\Files as SessionFiles;
-use Colibri\Session\Flash\Flash\Session as FlashSession;
-use Colibri\Template\NullTemplate;
-use Colibri\UrlGenerator\UrlBuilder;
+use Subapp\Http\Cookies;
+use Subapp\Http\Request;
+use Subapp\Http\Response;
+use Subapp\Parameters\ParametersCollection;
+use Subapp\Router\Router;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\Session\Adapter\Files as SessionFiles;
+use Subapp\Session\Flash\Flash\Session as FlashSession;
+use Subapp\Template\NullTemplate;
+use Subapp\UrlGenerator\UrlBuilder;
 use Composer\Autoload\ClassLoader;
 
 /**
  * Interface ServiceLocatorAware
  *
- * @package Colibri\WebApp
+ * @package Subapp\WebApp
  *
  * @property ParametersCollection config
  * @property ClassLoader          classLoader

@@ -1,23 +1,23 @@
 <?php
 
-namespace Colibri\WebApp\ServiceLocator;
+namespace Subapp\WebApp\ServiceLocator;
 
-use Colibri\Http\Cookies;
-use Colibri\Http\Request;
-use Colibri\Http\Response;
-use Colibri\Logger\Log;
-use Colibri\Parameters\ParametersCollection;
-use Colibri\Router\Router;
-use Colibri\ServiceContainer\ServiceLocator;
-use Colibri\ServiceLocator\ContainerInterface;
-use Colibri\Session\Adapter\Files as SessionFiles;
-use Colibri\Session\Flash\Flash\Session as FlashSession;
-use Colibri\Template\NullTemplate;
-use Colibri\UrlGenerator\UrlBuilder;
-use Colibri\WebApp\Auth\AuthInterface;
-use Colibri\WebApp\Exception\RuntimeException;
-use Colibri\WebApp\Web\Assets;
-use Colibri\WebApp\Web\Metatag;
+use Subapp\Http\Cookies;
+use Subapp\Http\Request;
+use Subapp\Http\Response;
+use Subapp\Logger\Log;
+use Subapp\Parameters\ParametersCollection;
+use Subapp\Router\Router;
+use Subapp\ServiceContainer\ServiceLocator;
+use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\Session\Adapter\Files as SessionFiles;
+use Subapp\Session\Flash\Flash\Session as FlashSession;
+use Subapp\Template\NullTemplate;
+use Subapp\UrlGenerator\UrlBuilder;
+use Subapp\WebApp\Auth\AuthInterface;
+use Subapp\WebApp\Exception\RuntimeException;
+use Subapp\WebApp\Web\Assets;
+use Subapp\WebApp\Web\Metatag;
 use Composer\Autoload\ClassLoader;
 
 /**
@@ -39,7 +39,7 @@ use Composer\Autoload\ClassLoader;
  * @property Assets               assets
  *
  * Trait ServiceLocatorAwareTrait
- * @package Colibri\Webapp\ServiceLocator
+ * @package Subapp\Webapp\ServiceLocator
  */
 trait ServiceLocatorAwareTrait
 {
@@ -168,7 +168,7 @@ trait ServiceLocatorAwareTrait
     /**
      * @return ServiceLocator
      */
-    public function getColibri()
+    public function getSubapp()
     {
         return $this->colibri;
     }

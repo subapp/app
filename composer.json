@@ -1,31 +1,30 @@
 {
-  "name": "colibrilabs/webapp",
-  "description": "MVC Application Collected From ColibriPhp Libraries",
+  "name": "subapp/webapp",
+  "description": "MVC Application Collected From Own Libraries",
   "keywords": ["php webapp","webapp","mvc app"],
   "authors": [
     {
       "name": "Ivan Hontarenko",
-      "email": "stewie.dev@gmail.com"
+      "email": "ihontarenko@gmail.com"
     }
   ],
   "license": "MIT",
   "type": "library",
   "require": {
     "php": ">=5.5",
-    "colibrilabs/service-locator": "~0.2",
-    "colibrilabs/parameters": "~0.1",
-    "colibrilabs/annotations": "~1.2",
-    "colibrilabs/http": "~0.2",
-    "colibrilabs/router": "~0.2",
-    "colibrilabs/uri": "~0.1",
-    "colibrilabs/url-generator": "~0.2",
-    "colibrilabs/template": "~1.3",
-    "colibrilabs/session": "~0.1",
-    "colibrilabs/orm": "~1.14"
+    "subapp/service-locator": "~0.3",
+    "subapp/annotations": "~1.4",
+    "subapp/http": "~0.3",
+    "subapp/router": "~0.3",
+    "subapp/uri": "~0.2",
+    "subapp/url-generator": "~0.3",
+    "subapp/template": "~1.4",
+    "subapp/session": "~0.2",
+    "subapp/orm": "~2.2"
   },
   "autoload": {
     "psr-4": {
-      "Colibri\\WebApp\\": "src/",
+      "Subapp\\WebApp\\": "src/",
       "App\\Controller\\": "testRun/controllers/"
     }
   }

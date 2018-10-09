@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Mvc;
+namespace Subapp\WebApp\Mvc;
 
-use Colibri\WebApp\Controller;
-use Colibri\WebApp\ServiceLocator\ServiceLocatorAwareTrait;
+use Subapp\WebApp\Controller;
+use Subapp\WebApp\ServiceLocator\ServiceLocatorAwareTrait;
 
 /**
  * Class AbstractController
- * @package Colibri\WebApp\Mvc
+ * @package Subapp\WebApp\Mvc
  */
 abstract class AbstractController extends Controller
 {

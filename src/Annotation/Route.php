@@ -1,12 +1,12 @@
 <?php
 
-namespace Colibri\WebApp\Annotation;
+namespace Subapp\WebApp\Annotation;
 
-use Colibri\Annotations\Annotation\Target;
+use Subapp\Annotations\Annotation\Target;
 
 /**
  * Class Route
- * @package Colibri\WebApp\Annotation
+ * @package Subapp\WebApp\Annotation
  * @Annotation()
  * @Target({Target::CLAZZ, Target::METHOD})
  */

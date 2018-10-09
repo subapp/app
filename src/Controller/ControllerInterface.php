@@ -1,8 +1,8 @@
 <?php
 
-namespace Colibri\WebApp\Controller;
+namespace Subapp\WebApp\Controller;
 
-use Colibri\WebApp\ServiceLocatorAware;
+use Subapp\WebApp\ServiceLocatorAware;
 
 interface ControllerInterface extends ServiceLocatorAware
 {

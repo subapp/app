@@ -1,13 +1,13 @@
 <?php
 
-namespace Colibri\WebApp\Web;
+namespace Subapp\WebApp\Web;
 
-use Colibri\Collection\ArrayCollection;
-use Colibri\Html\HtmlElement;
+use Subapp\Collection\ArrayCollection;
+use Subapp\Html\HtmlElement;
 
 /**
  * Class Metatag
- * @package Colibri\Webapp\Web
+ * @package Subapp\Webapp\Web
  */
 class Metatag
 {

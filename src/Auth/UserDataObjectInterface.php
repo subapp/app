@@ -1,10 +1,10 @@
 <?php
 
-namespace Colibri\WebApp\Auth;
+namespace Subapp\WebApp\Auth;
 
 /**
  * Interface UserDataObjectInterface
- * @package Colibri\WebApp\Auth
+ * @package Subapp\WebApp\Auth
  */
 interface UserDataObjectInterface
 {

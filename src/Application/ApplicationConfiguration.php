@@ -1,14 +1,14 @@
 <?php
 
-namespace Colibri\WebApp\Application;
+namespace Subapp\WebApp\Application;
 
-use Colibri\Collection\ProxyInterface;
-use Colibri\Parameters\ParametersCollection;
-use Colibri\WebApp\Exception\RuntimeException;
+use Subapp\Collection\ProxyInterface;
+use Subapp\Parameters\ParametersCollection;
+use Subapp\WebApp\Exception\RuntimeException;
 
 /**
  * Class ApplicationConfiguration
- * @package Colibri\WebApp\Application
+ * @package Subapp\WebApp\Application
  */
 class ApplicationConfiguration extends ParametersCollection implements ProxyInterface
 {
