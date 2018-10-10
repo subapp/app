@@ -3,7 +3,7 @@
 namespace Subapp\WebApp\Application;
 
 use Subapp\Annotations\Reader;
-use Subapp\Parameters\ParametersInterface;
+use Subapp\Collection\Parameters\ParametersInterface;
 use Subapp\Template\Template;
 use Subapp\WebApp\Application;
 use Subapp\WebApp\Loader\Annotation\AnnotationClassLoader;

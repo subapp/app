@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ca4ca7b388c4f0362bebcfa3ef9ffeb",
+    "content-hash": "32e1bc42edaaf877d366b8420995fc02",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -279,29 +279,29 @@
         },
         {
             "name": "subapp/annotations",
-            "version": "v1.4.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/annotations.git",
-                "reference": "783f7df7d6094f611420adc440095e39f5f84d02"
+                "reference": "992d7181000cd4f6cc07568d979d2be08df29464"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/annotations/zipball/783f7df7d6094f611420adc440095e39f5f84d02",
-                "reference": "783f7df7d6094f611420adc440095e39f5f84d02",
+                "url": "https://api.github.com/repos/subapp/annotations/zipball/992d7181000cd4f6cc07568d979d2be08df29464",
+                "reference": "992d7181000cd4f6cc07568d979d2be08df29464",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6",
                 "subapp/cache": "~1.0",
-                "subapp/collection": "~1.0",
-                "subapp/lexer": "~1.0",
-                "subapp/loader": "~1.2"
+                "subapp/collection": "~1.1",
+                "subapp/lexer": "~1.5",
+                "subapp/loader": "~1.5"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Colibri\\Annotations\\": "src"
+                    "Subapp\\Annotations\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -318,7 +318,7 @@
             "keywords": [
                 "annotations"
             ],
-            "time": "2018-10-08T12:59:41+00:00"
+            "time": "2018-10-10T16:51:13+00:00"
         },
         {
             "name": "subapp/cache",
@@ -451,16 +451,16 @@
         },
         {
             "name": "subapp/lexer",
-            "version": "v1.3.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/lexer.git",
-                "reference": "4b451ab347317b1c866290f9ecf06948e4276a8c"
+                "reference": "6487add8ea566ce2cdd8e9044d600153639cf428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/lexer/zipball/4b451ab347317b1c866290f9ecf06948e4276a8c",
-                "reference": "4b451ab347317b1c866290f9ecf06948e4276a8c",
+                "url": "https://api.github.com/repos/subapp/lexer/zipball/6487add8ea566ce2cdd8e9044d600153639cf428",
+                "reference": "6487add8ea566ce2cdd8e9044d600153639cf428",
                 "shasum": ""
             },
             "require": {
@@ -469,7 +469,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Colibri\\Lexer\\": "src"
+                    "Subapp\\Lexer\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -486,20 +486,20 @@
             "keywords": [
                 "lexer"
             ],
-            "time": "2017-05-23T09:23:15+00:00"
+            "time": "2018-10-08T12:16:33+00:00"
         },
         {
             "name": "subapp/loader",
-            "version": "v1.3.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/loader.git",
-                "reference": "ca98e392df324de0bba74bee6b749e70bf564160"
+                "reference": "0004b6976d476b5113bfec8ffb92af3a01008668"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/loader/zipball/ca98e392df324de0bba74bee6b749e70bf564160",
-                "reference": "ca98e392df324de0bba74bee6b749e70bf564160",
+                "url": "https://api.github.com/repos/subapp/loader/zipball/0004b6976d476b5113bfec8ffb92af3a01008668",
+                "reference": "0004b6976d476b5113bfec8ffb92af3a01008668",
                 "shasum": ""
             },
             "require": {
@@ -508,7 +508,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Colibri\\Loader\\": "src/"
+                    "Subapp\\Loader\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -528,7 +528,7 @@
                 "php autoloader",
                 "php loader"
             ],
-            "time": "2017-05-23T08:54:19+00:00"
+            "time": "2018-10-08T12:07:40+00:00"
         },
         {
             "name": "subapp/orm",
@@ -667,16 +667,16 @@
         },
         {
             "name": "subapp/session",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/session.git",
-                "reference": "ff6eacfc5832d07b8e5becdb9ebb8f4fb76a0ab0"
+                "reference": "4d5ea901fd2b2bb13667bdafaed3c04bc2c0ddc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/session/zipball/ff6eacfc5832d07b8e5becdb9ebb8f4fb76a0ab0",
-                "reference": "ff6eacfc5832d07b8e5becdb9ebb8f4fb76a0ab0",
+                "url": "https://api.github.com/repos/subapp/session/zipball/4d5ea901fd2b2bb13667bdafaed3c04bc2c0ddc5",
+                "reference": "4d5ea901fd2b2bb13667bdafaed3c04bc2c0ddc5",
                 "shasum": ""
             },
             "require": {
@@ -685,7 +685,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Colibri\\Session\\": "src/"
+                    "Subapp\\Session\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -703,7 +703,7 @@
                 "php session",
                 "session"
             ],
-            "time": "2018-10-08T11:55:56+00:00"
+            "time": "2018-10-10T16:03:33+00:00"
         },
         {
             "name": "subapp/template",
