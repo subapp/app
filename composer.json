@@ -30,7 +30,7 @@
   "autoload": {
     "psr-4": {
       "Subapp\\WebApp\\": "src/",
-      "App\\Controller\\": "testRun/controllers/"
+      "App\\Controller\\": "app/controllers/"
     }
   }
 }

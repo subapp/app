@@ -2,8 +2,8 @@
 
 namespace Subapp\WebApp\Application;
 
+use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\Collection\ProxyInterface;
-use Subapp\Parameters\ParametersCollection;
 use Subapp\WebApp\Exception\RuntimeException;
 
 /**

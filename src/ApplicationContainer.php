@@ -2,10 +2,10 @@
 
 namespace Subapp\WebApp;
 
+use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\Http\Cookies;
 use Subapp\Http\Request;
 use Subapp\Http\Response;
-use Subapp\Parameters\ParametersCollection;
 use Subapp\Router\Router;
 use Subapp\ServiceLocator\Container;
 use Subapp\Session\Adapter\Files as SessionFiles;
