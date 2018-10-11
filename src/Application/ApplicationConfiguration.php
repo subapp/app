@@ -107,7 +107,7 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
      */
     public function getValue($key, $required = true)
     {
-        $value = $this->offsetGet($key);
+        $value = $this->path($key);
         
         if (null === $value && $required) {
             throw new RuntimeException(sprintf('Configuration key is required "%s"', $key));
