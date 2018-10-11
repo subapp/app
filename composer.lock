@@ -410,16 +410,16 @@
         },
         {
             "name": "subapp/http",
-            "version": "v0.3.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/http.git",
-                "reference": "f3cfb4ba130b3acd9abc4af112bc895d07d001c4"
+                "reference": "17473e860a7dde9a7d7d265acd088c28a45075f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/http/zipball/f3cfb4ba130b3acd9abc4af112bc895d07d001c4",
-                "reference": "f3cfb4ba130b3acd9abc4af112bc895d07d001c4",
+                "url": "https://api.github.com/repos/subapp/http/zipball/17473e860a7dde9a7d7d265acd088c28a45075f7",
+                "reference": "17473e860a7dde9a7d7d265acd088c28a45075f7",
                 "shasum": ""
             },
             "require": {
@@ -447,7 +447,7 @@
                 "http",
                 "php http"
             ],
-            "time": "2018-10-08T11:55:32+00:00"
+            "time": "2018-10-11T08:21:43+00:00"
         },
         {
             "name": "subapp/lexer",
