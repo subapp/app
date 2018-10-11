@@ -2,13 +2,13 @@
 
 namespace Subapp\WebApp\ServiceLocator;
 
+use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\Http\Cookies;
 use Subapp\Http\Request;
 use Subapp\Http\Response;
-use Subapp\Logger\Log;
-use Subapp\Parameters\ParametersCollection;
+use Subapp\Orm\Logger\Log;
+use Subapp\Orm\ServiceContainer\ServiceLocator;
 use Subapp\Router\Router;
-use Subapp\ServiceContainer\ServiceLocator;
 use Subapp\ServiceLocator\ContainerInterface;
 use Subapp\Session\Adapter\Files as SessionFiles;
 use Subapp\Session\Flash\Flash\Session as FlashSession;
@@ -32,7 +32,7 @@ use Composer\Autoload\ClassLoader;
  * @property SessionFiles         session
  * @property FlashSession         flash
  * @property NullTemplate         template
- * @property ServiceLocator       colibri
+ * @property ServiceLocator       orm
  * @property Metatag              metatag
  * @property Log                  logger
  * @property AuthInterface        auth
@@ -168,9 +168,9 @@ trait ServiceLocatorAwareTrait
     /**
      * @return ServiceLocator
      */
-    public function getSubapp()
+    public function getOrm()
     {
-        return $this->colibri;
+        return $this->orm;
     }
     
     /**
