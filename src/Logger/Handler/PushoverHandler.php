@@ -2,10 +2,10 @@
 
 namespace Subapp\WebApp\Logger\Handler;
 
-use Subapp\Logger\Collection\Collection;
-use Subapp\Logger\Formatter\LineFormatter;
-use Subapp\Logger\Handler\AbstractHandler;
-use Subapp\Logger\Handler\Mask\LogLevelMask;
+use Subapp\Orm\Logger\Collection\Collection;
+use Subapp\Orm\Logger\Formatter\LineFormatter;
+use Subapp\Orm\Logger\Handler\AbstractHandler;
+use Subapp\Orm\Logger\Handler\Mask\LogLevelMask;
 
 /**
  * Class PushoverHandler

@@ -6,7 +6,7 @@ error_reporting(1);
 ini_set('display_errors', 1);
 
 // composer autoload
-use Subapp\Parameters\ParametersCollection;
+use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\WebApp\Application\ConfigurableApplication;
 
 include_once '../vendor/autoload.php';

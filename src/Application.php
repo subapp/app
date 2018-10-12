@@ -22,7 +22,12 @@ class Application implements ServiceLocatorAware
      * @var ContainerInterface
      */
     protected $serviceLocator;
-    
+
+    /**
+     * @var callable
+     */
+    protected $fallbackAction;
+
     /**
      * @var string
      */
@@ -104,7 +109,6 @@ class Application implements ServiceLocatorAware
             
         } else {
             $this->response->setStatusCode(404);
-            
             throw new PageNotFoundException("Page with route '{$router->getTargetUri()}' was not found");
         }
         
@@ -143,6 +147,22 @@ class Application implements ServiceLocatorAware
         $this->controllerNamespace = $controllerNamespace;
         
         return $this;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getFallbackAction()
+    {
+        return $this->fallbackAction;
+    }
+
+    /**
+     * @param callable $fallbackAction
+     */
+    public function setFallbackAction(callable $fallbackAction)
+    {
+        $this->fallbackAction = $fallbackAction;
     }
     
     /**
