@@ -3,9 +3,10 @@
 namespace Subapp\WebApp\Exception;
 
 /**
- * Class PageNotFoundException
+ * Class DoesNotExistException
  * @package Subapp\WebApp\Exception
  */
-class PageNotFoundException extends \Exception
+class NotFoundException extends \Exception
 {
+
 }

@@ -15,7 +15,9 @@
   "license": "MIT",
   "type": "library",
   "require": {
-    "php": ">=5.5",
+    "php": ">=7.1",
+    "ext-json": "*",
+    "ext-curl": "*",
     "subapp/service-locator": "~0.3",
     "subapp/annotations": "~1.4",
     "subapp/loader": "~1.3",
@@ -25,7 +27,7 @@
     "subapp/url-generator": "~0.3",
     "subapp/template": "~1.4",
     "subapp/session": "~0.3",
-    "subapp/orm": "~2.2"
+    "subapp/orm": "~2.2",
   },
   "autoload": {
     "psr-4": {

@@ -279,16 +279,16 @@
         },
         {
             "name": "subapp/annotations",
-            "version": "v1.5.2",
+            "version": "v1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/annotations.git",
-                "reference": "992d7181000cd4f6cc07568d979d2be08df29464"
+                "reference": "c1b26afbf27f8e1fd7ae6bb7f8d435e544a1575c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/annotations/zipball/992d7181000cd4f6cc07568d979d2be08df29464",
-                "reference": "992d7181000cd4f6cc07568d979d2be08df29464",
+                "url": "https://api.github.com/repos/subapp/annotations/zipball/c1b26afbf27f8e1fd7ae6bb7f8d435e544a1575c",
+                "reference": "c1b26afbf27f8e1fd7ae6bb7f8d435e544a1575c",
                 "shasum": ""
             },
             "require": {
@@ -318,7 +318,7 @@
             "keywords": [
                 "annotations"
             ],
-            "time": "2018-10-10T16:51:13+00:00"
+            "time": "2018-10-11T12:50:59+00:00"
         },
         {
             "name": "subapp/cache",
@@ -532,16 +532,16 @@
         },
         {
             "name": "subapp/orm",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/orm.git",
-                "reference": "a26fac53a8e92b37d578cfdaaf686d03b4749b64"
+                "reference": "396c53eab90dd911ce1a4dbccf3713731490c915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/orm/zipball/a26fac53a8e92b37d578cfdaaf686d03b4749b64",
-                "reference": "a26fac53a8e92b37d578cfdaaf686d03b4749b64",
+                "url": "https://api.github.com/repos/subapp/orm/zipball/396c53eab90dd911ce1a4dbccf3713731490c915",
+                "reference": "396c53eab90dd911ce1a4dbccf3713731490c915",
                 "shasum": ""
             },
             "require": {
@@ -581,7 +581,7 @@
                 "subapp",
                 "subapp orm"
             ],
-            "time": "2018-10-08T12:47:00+00:00"
+            "time": "2018-10-11T08:49:50+00:00"
         },
         {
             "name": "subapp/router",
@@ -707,16 +707,16 @@
         },
         {
             "name": "subapp/template",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/subapp/template.git",
-                "reference": "e0d274955768177d698748f661b7b482cc1962ff"
+                "reference": "4647d914071228a8c3b3de0935a7da7d363b958d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/subapp/template/zipball/e0d274955768177d698748f661b7b482cc1962ff",
-                "reference": "e0d274955768177d698748f661b7b482cc1962ff",
+                "url": "https://api.github.com/repos/subapp/template/zipball/4647d914071228a8c3b3de0935a7da7d363b958d",
+                "reference": "4647d914071228a8c3b3de0935a7da7d363b958d",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "php template",
                 "template"
             ],
-            "time": "2018-10-08T12:42:51+00:00"
+            "time": "2018-10-11T10:39:16+00:00"
         },
         {
             "name": "subapp/uri",

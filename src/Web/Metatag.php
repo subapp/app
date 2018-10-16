@@ -2,8 +2,8 @@
 
 namespace Subapp\WebApp\Web;
 
-use Subapp\Collection\ArrayCollection;
-use Subapp\Html\HtmlElement;
+use Subapp\Collection\Collection;
+use Subapp\WebApp\Web\Html\HtmlElement;
 
 /**
  * Class Metatag
@@ -13,16 +13,16 @@ class Metatag
 {
     
     /**
-     * @var ArrayCollection
+     * @var Collection
      */
-    protected $metatags;
+    protected $metaTags;
     
     /**
      * Metatag constructor.
      */
     public function __construct()
     {
-        $this->metatags = new ArrayCollection();
+        $this->metaTags = new Collection();
     }
     
     /**
@@ -35,7 +35,7 @@ class Metatag
         $tag = new HtmlElement($name, $attributes, null);
         $hash = $this->getTagHashCode($name, $attributes);
         
-        $this->metatags->offsetSet($hash, $tag);
+        $this->metaTags->offsetSet($hash, $tag);
         
         return $tag;
     }
@@ -58,7 +58,7 @@ class Metatag
     public function removeTag($name, array $attributes)
     {
         $hash = $this->getTagHashCode($name, $attributes);
-        $this->metatags->offsetUnset($hash);
+        $this->metaTags->offsetUnset($hash);
         
         return $this;
     }
@@ -87,11 +87,11 @@ class Metatag
         
         $hash = $this->getTagHashCode('title', []);
         
-        if (!$this->metatags->offsetExists($hash)) {
+        if (!$this->metaTags->offsetExists($hash)) {
             $this->setTagName('title', []);
         }
         
-        $titleTag = $this->metatags->offsetGet($hash);
+        $titleTag = $this->metaTags->offsetGet($hash);
         
         $contents = $titleTag->getContent();
         $prepend ? array_unshift($contents, $title) : array_push($contents, $title);
@@ -225,7 +225,7 @@ class Metatag
      */
     public function render()
     {
-        return sprintf("%s\n", implode("\n", $this->metatags->toArray()));
+        return sprintf("%s\n", implode("\n", $this->metaTags->toArray()));
     }
     
 }

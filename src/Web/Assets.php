@@ -2,11 +2,11 @@
 
 namespace Subapp\WebApp\Web;
 
-use Subapp\Collection\ArrayCollection as Collection;
-use Subapp\Html\Element\LinkElement;
-use Subapp\Html\Element\ScriptElement;
-use Subapp\Html\Element\StyleElement;
+use Subapp\Collection\Collection;
 use Subapp\URI\Builder as Url;
+use Subapp\WebApp\Web\Html\Element\LinkElement;
+use Subapp\WebApp\Web\Html\Element\ScriptElement;
+use Subapp\WebApp\Web\Html\Element\StyleElement;
 
 /**
  * Class Assets

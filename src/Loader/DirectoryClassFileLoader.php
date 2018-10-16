@@ -2,7 +2,7 @@
 
 namespace Subapp\WebApp\Loader;
 
-use Subapp\Collection\ArrayCollection;
+use Subapp\Collection\Collection;
 
 /**
  * Class DirectoryClassFileLoader
@@ -14,11 +14,11 @@ class DirectoryClassFileLoader extends ClassFileLoader
     /**
      * @param $resource
      * @param $resourceType
-     * @return ArrayCollection
+     * @return Collection
      */
     public function load($resource, $resourceType)
     {
-        $collection = new ArrayCollection();
+        $collection = new Collection();
         $iterator = new \RecursiveDirectoryIterator($resource,
             \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS);
         $iterator = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::SELF_FIRST);

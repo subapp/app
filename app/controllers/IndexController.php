@@ -47,6 +47,11 @@ class IndexController extends Controller
         ]));
     }
     
+    public function testAction($id = 0)
+    {
+        return json_encode([__METHOD__, time(), $id]);
+    }
+    
     /**
      * @Route(pattern="/do/:id")
      * @param int $id

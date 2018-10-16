@@ -3,9 +3,10 @@
 namespace Subapp\WebApp\Exception;
 
 /**
- * Class RuntimeWebAppException
+ * Class RuntimeException
  * @package Subapp\WebApp\Exception
  */
-class RuntimeException extends ReplaceException
+class RuntimeException extends \Exception
 {
+
 }

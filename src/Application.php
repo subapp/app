@@ -6,9 +6,11 @@ use Subapp\Http\Response;
 use Subapp\Router\Router;
 use Subapp\ServiceLocator\ContainerInterface;
 use Subapp\ServiceLocator\Service;
+use Subapp\WebApp\Controller\Action\ClassMethodAction;
 use Subapp\WebApp\Controller\ActionExecutor;
 use Subapp\WebApp\Controller\ControllerResolver;
-use Subapp\WebApp\Exception\PageNotFoundException;
+use Subapp\WebApp\Exception\NotFoundException;
+use Subapp\WebApp\Exception\RouteNotFoundException;
 use Subapp\WebApp\Exception\RuntimeException;
 
 /**
@@ -73,7 +75,7 @@ class Application implements ServiceLocatorAware
     
     /**
      * @return Response
-     * @throws PageNotFoundException
+     * @throws NotFoundException
      * @throws \Throwable
      */
     public function run()
@@ -87,16 +89,22 @@ class Application implements ServiceLocatorAware
             $resolver = new ControllerResolver($this->getContainer());
             $executor = new ActionExecutor($this->response, $resolver);
             
+            
+            
             $executor->setCompiler($this->view);
             
-            $namespace = null === $router->getNamespace()
-                ? $this->getControllerNamespace()
-                : $router->getNamespace();
+            $namespace = (null === $router->getNamespace())
+                ? $this->getControllerNamespace() : $router->getNamespace();
             
             $resolver->setNamespace($namespace);
             $resolver->setControllerClassName($controllerName);
             $resolver->setActionName($actionName);
             $resolver->setParams($router->getMatches());
+    
+            $classMethodAction = new ClassMethodAction($namespace, $controllerName, $actionName);
+            $classMethodAction->setArguments($router->getMatches());
+            
+            die(var_dump($classMethodAction->executeCallback()));
             
             $this->templateInjection();
             
@@ -109,7 +117,8 @@ class Application implements ServiceLocatorAware
             
         } else {
             $this->response->setStatusCode(404);
-            throw new PageNotFoundException("Page with route '{$router->getTargetUri()}' was not found");
+
+            throw new RouteNotFoundException($router);
         }
         
         return $this->response->send();

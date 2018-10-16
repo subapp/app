@@ -2,7 +2,7 @@
 
 namespace Subapp\WebApp\Loader\Annotation;
 
-use Subapp\Collection\ArrayCollection;
+use Subapp\Collection\Collection;
 use Subapp\WebApp\Loader\DirectoryClassFileLoader;
 
 /**
@@ -31,7 +31,7 @@ class AnnotationDirectoryLoader extends DirectoryClassFileLoader
      */
     public function load($resource, $resourceType)
     {
-        $collection = new ArrayCollection();
+        $collection = new Collection();
         
         foreach (parent::load($resource, $resourceType) as $className) {
             if ($this->isSupported($className, null)) {

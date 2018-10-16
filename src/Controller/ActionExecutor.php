@@ -27,6 +27,11 @@ class ActionExecutor
      * @var TemplateInterface
      */
     private $compiler;
+
+    /**
+     * @var array
+     */
+    private $fallback = [];
     
     /**
      * ActionExecutor constructor.
@@ -94,7 +99,27 @@ class ActionExecutor
     {
         $this->getResponse()->setContent($this->process());
     }
-    
+
+    /**
+     * @param ControllerResolver $resolver
+     * @return null|ControllerResponse
+     */
+    private function executeResolver(ControllerResolver $resolver)
+    {
+        $result = null;
+
+        try {
+            $result = $resolver->execute();
+        } catch (\Throwable $exception) {
+            $resolver = clone($resolver);
+            $resolver->setActionName('fallback');
+            die(var_dump($resolver));
+            $result = $this->executeResolver();
+        }
+
+        return $result;
+    }
+
     /**
      * @return null|string
      */
@@ -102,8 +127,9 @@ class ActionExecutor
     {
         $resolver = $this->getResolver();
         $response = $this->getResponse();
-        
-        $result = $resolver->execute();
+
+        $result = $this->executeResolver($resolver);
+
         $content = null;
         
         // If content body is disabled for response, nothing to set in it
@@ -115,11 +141,12 @@ class ActionExecutor
             
             // Special condition for handle controller templates
             if ($response->getBodyFormat() == Response::RESPONSE_HTML) {
+
                 // If controller action nothing return, we try render inner template
-                // controller_name/action_name.php
+                // ControllerName/ActionName.php
                 if (null === $content) {
-                    $templatePath = "{$resolver->getControllerCamelize()}/{$resolver->getActionCamelize()}";
-                    $content = $this->render($templatePath, $controller->getPseudoPath());
+                    $template = sprintf('%s/%s', $resolver->getControllerCamelize(), $resolver->getActionCamelize());
+                    $content = $this->render($template, $controller->getPseudoPath());
                 }
                 
                 // If controller has main layout trying, we try wrap in it

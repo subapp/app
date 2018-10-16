@@ -4,6 +4,9 @@ namespace Subapp\WebApp\Controller;
 
 use Subapp\ServiceLocator\ContainerInterface;
 use Subapp\WebApp\Controller;
+use Subapp\WebApp\Exception\ClassNotFoundException;
+use Subapp\WebApp\Exception\MethodNotFoundException;
+use Subapp\WebApp\Exception\NotFoundException;
 use Subapp\WebApp\Exception\RuntimeException;
 
 /**
@@ -17,11 +20,6 @@ class ControllerResolver
      * @var ContainerInterface
      */
     protected $container = null;
-    
-    /**
-     * @var ControllerResponse
-     */
-    protected $response = null;
     
     /**
      * @var string|null
@@ -50,46 +48,110 @@ class ControllerResolver
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->response = new ControllerResponse();
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function __debugInfo()
+    {
+        return [
+            'callback' => sprintf('%s\%s::%s(%s);',
+                $this->namespace, $this->controllerClassName, $this->actionName, implode(', ', $this->params)),
+        ];
     }
     
     /**
      * @return ControllerResponse
-     * @throws RuntimeException
      */
     public function execute()
     {
+        $response = new ControllerResponse();
+
         $class = $this->getControllerClass();
-        
-        $reflectionClass = new \ReflectionClass($class);
-        
-        if ($reflectionClass->implementsInterface(ControllerInterface::class)) {
-            /** @var Controller $controller */
-            $controller = $reflectionClass->newInstance();
-            $controller->setReflectionClass($reflectionClass);
-            $this->getResponse()->setControllerInstance($controller);
-            
-            $controller->setContainer($this->container);
-            
-            $reflectionMethod = new \ReflectionMethod($class, $this->getActionName());
-            $controller->setReflectionAction($reflectionMethod);
-            
-            $controller->setNamespace($this->getNamespace());
-            $controller->setName($this->getControllerClassName());
-            $controller->setAction($this->getActionName());
-            $controller->setParams($this->getParams());
-            
-            $controller->beforeExecute();
-            $this->response->setControllerContent($reflectionMethod->invokeArgs($controller, $this->getParams()));
-            $controller->afterExecute();
-            
-        } else {
-            throw new RuntimeException('Controller found but it should implemented interface [:name]', [
-                'name' => ControllerInterface::class,
-            ]);
+        $controller = $this->getControllerInstance($class);
+
+        $this->complementControllerInstance($controller);
+
+        $method = $this->getControllerMethodInstance($controller, $this->getActionName());
+
+        $controller->beforeExecute();
+        $response->setControllerContent($method->invokeArgs($controller, $this->getParams()));
+        $controller->afterExecute();
+
+        $response->setControllerInstance($controller);
+
+        return $response;
+    }
+
+    /**
+     * @param ControllerInterface $controller
+     */
+    public function complementControllerInstance(ControllerInterface $controller)
+    {
+        $controller->setContainer($this->container);
+
+        $controller->setNamespace($this->getNamespace());
+        $controller->setName($this->getControllerClassName());
+        $controller->setAction($this->getActionName());
+        $controller->setParams($this->getParams());
+    }
+
+    /**
+     * @param ControllerInterface $controller
+     * @param $name
+     * @return \ReflectionMethod
+     * @throws MethodNotFoundException
+     */
+    public function getControllerMethodInstance(ControllerInterface $controller, $name)
+    {
+        $class = $controller->getReflectionClass();
+
+        try {
+            $method = $class->getMethod($name);
+        } catch (\ReflectionException $exception) {
+            throw new MethodNotFoundException($class->getName(), $name);
         }
-        
-        return $this->response;
+
+        return $method;
+    }
+
+    /**
+     * @param string $class
+     * @return ControllerInterface
+     */
+    public function getControllerInstance($class)
+    {
+        $reflection = $this->getControllerReflection($class);
+
+        /** @var ControllerInterface $controller */
+        $controller = $reflection->newInstance();
+        $controller->setReflectionClass($reflection);
+
+        return $controller;
+    }
+
+    /**
+     * @param $class
+     * @return \ReflectionClass
+     * @throws ClassNotFoundException|\Throwable
+     */
+    public function getControllerReflection($class)
+    {
+        try {
+            $reflection = new \ReflectionClass($class);
+            if (!$reflection->implementsInterface(ControllerInterface::class)) {
+                throw new NotFoundException(sprintf(
+                    'Irregular controller class name. Because it doesn\'t implement interface %s',
+                    ControllerInterface::class));
+            }
+        } catch (\ReflectionException $exception) {
+            throw new ClassNotFoundException($class);
+        } catch (\Throwable $exception) {
+            throw $exception;
+        }
+
+        return $reflection;
     }
     
     /**
@@ -144,22 +206,6 @@ class ControllerResolver
     public function setControllerClassName($controllerClassName)
     {
         $this->controllerClassName = ucfirst($controllerClassName);
-    }
-    
-    /**
-     * @return ControllerResponse|null
-     */
-    public function getResponse()
-    {
-        return $this->response;
-    }
-    
-    /**
-     * @param ControllerResponse|null $response
-     */
-    public function setResponse($response)
-    {
-        $this->response = $response;
     }
     
     /**
