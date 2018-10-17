@@ -1,16 +1,16 @@
 <?php
 
-namespace Subapp\WebApp\Controller\Action;
+namespace Subapp\WebApp\Action;
 
 /**
  * Interface CallableActionInterface
- * @package Subapp\WebApp\Controller\Action
+ * @package Subapp\WebApp\Action
  */
-interface CallableActionInterface
+interface ActionInterface
 {
     
     /**
-     * @return CallbackFunction
+     * @return Callback
      */
     public function getCallback();
     

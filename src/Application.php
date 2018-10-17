@@ -7,8 +7,11 @@ use Subapp\Router\Router;
 use Subapp\ServiceLocator\ContainerInterface;
 use Subapp\ServiceLocator\Service;
 use Subapp\WebApp\Controller\Action\ClassMethodAction;
-use Subapp\WebApp\Controller\ActionExecutor;
-use Subapp\WebApp\Controller\ControllerResolver;
+use Subapp\WebApp\Controller\ControllerClassMethod;
+use Subapp\WebApp\Controller\Executor\ControllerActionExecutor;
+use Subapp\WebApp\Controller\ExecutorFactory;
+use Subapp\WebApp\Controller\Resolver;
+use Subapp\WebApp\Controller\AbstractExecutor;
 use Subapp\WebApp\Exception\NotFoundException;
 use Subapp\WebApp\Exception\RouteNotFoundException;
 use Subapp\WebApp\Exception\RuntimeException;
@@ -83,33 +86,28 @@ class Application implements ServiceLocatorAware
         $router = $this->initializeDefaultRoutes()->handle();
         
         if ($router->isFounded()) {
+
+            $factory = new ExecutorFactory();
             
-            list($controllerName, $actionName) = $this->extractControllerCallback($router);
-            
-            $resolver = new ControllerResolver($this->getContainer());
-            $executor = new ActionExecutor($this->response, $resolver);
-            
-            
-            
-            $executor->setCompiler($this->view);
-            
+            list($class, $method) = $this->extractControllerCallback($router);
+
             $namespace = (null === $router->getNamespace())
                 ? $this->getControllerNamespace() : $router->getNamespace();
-            
-            $resolver->setNamespace($namespace);
-            $resolver->setControllerClassName($controllerName);
-            $resolver->setActionName($actionName);
-            $resolver->setParams($router->getMatches());
-    
-            $classMethodAction = new ClassMethodAction($namespace, $controllerName, $actionName);
-            $classMethodAction->setArguments($router->getMatches());
-            
-            die(var_dump($classMethodAction->executeCallback()));
-            
+
+            $action = new ControllerClassMethod($namespace, $class, $method);
+            $action->setArguments($router->getMatches());
+            $action->complementControllerInstance($this->getContainer());
+
+            $executor = $factory->getExecutor($action);
+            $executor->setAction($action);
+
+            $resolver = new Resolver($this->response, $executor);
+            $resolver->setCompiler($this->view);
+
             $this->templateInjection();
             
             try {
-                $executor->execute();
+                $resolver->execute();
             } catch (\Throwable $exception) {
                 $this->response->setStatusCode(500);
                 throw $exception;
@@ -117,7 +115,6 @@ class Application implements ServiceLocatorAware
             
         } else {
             $this->response->setStatusCode(404);
-
             throw new RouteNotFoundException($router);
         }
         

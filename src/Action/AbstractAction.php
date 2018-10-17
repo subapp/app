@@ -1,12 +1,12 @@
 <?php
 
-namespace Subapp\WebApp\Controller\Action;
+namespace Subapp\WebApp\Action;
 
 /**
- * Abstract Class AbstractAction
- * @package Subapp\WebApp\Controller
+ * Class AbstractAction
+ * @package Subapp\WebApp\Action
  */
-abstract class AbstractAction implements CallableActionInterface
+abstract class AbstractAction implements ActionInterface
 {
     
     /**
@@ -15,7 +15,7 @@ abstract class AbstractAction implements CallableActionInterface
     private $arguments = [];
     
     /**
-     * @return CallbackFunction
+     * @return Callback
      */
     abstract public function getCallback();
     
@@ -24,9 +24,7 @@ abstract class AbstractAction implements CallableActionInterface
      */
     public function executeCallback()
     {
-        $callback = $this->getCallback();
-        
-        return $callback->call($this->arguments);
+        return $this->getCallback()(...array_values($this->getArguments()));
     }
     
     /**

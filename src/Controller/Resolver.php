@@ -5,12 +5,13 @@ namespace Subapp\WebApp\Controller;
 use Subapp\Http\Response;
 use Subapp\Template\NullTemplate;
 use Subapp\Template\TemplateInterface;
+use Subapp\WebApp\Controller\Executor\ExecutorInterface;
 
 /**
  * Class ActionExecutor
  * @package Subapp\WebApp\Controller
  */
-class ActionExecutor
+class Resolver
 {
     
     /**
@@ -19,9 +20,9 @@ class ActionExecutor
     private $response;
     
     /**
-     * @var ControllerResolver
+     * @var ExecutorInterface
      */
-    private $resolver;
+    private $executor;
     
     /**
      * @var TemplateInterface
@@ -29,19 +30,19 @@ class ActionExecutor
     private $compiler;
 
     /**
-     * @var array
+     * @var array|callable
      */
-    private $fallback = [];
+    private $fallback;
     
     /**
      * ActionExecutor constructor.
-     * @param $response
-     * @param $resolver
+     * @param Response $response
+     * @param ExecutorInterface $executor
      */
-    public function __construct(Response $response, ControllerResolver $resolver)
+    public function __construct(Response $response, ExecutorInterface $executor)
     {
         $this->response = $response;
-        $this->resolver = $resolver;
+        $this->executor = $executor;
     }
     
     /**
@@ -61,19 +62,19 @@ class ActionExecutor
     }
     
     /**
-     * @return ControllerResolver
+     * @return ExecutorInterface
      */
-    public function getResolver()
+    public function getExecutor()
     {
-        return $this->resolver;
+        return $this->executor;
     }
     
     /**
-     * @param ControllerResolver $resolver
+     * @param ExecutorInterface $executor
      */
-    public function setResolver(ControllerResolver $resolver)
+    public function setExecutor(ExecutorInterface $executor)
     {
-        $this->resolver = $resolver;
+        $this->executor = $executor;
     }
     
     /**
@@ -101,19 +102,17 @@ class ActionExecutor
     }
 
     /**
-     * @param ControllerResolver $resolver
-     * @return null|ControllerResponse
+     * @param ExecutorInterface $executor
+     * @return null|Result
      */
-    private function executeResolver(ControllerResolver $resolver)
+    private function executeResolver(ExecutorInterface $executor)
     {
         $result = null;
 
         try {
-            $result = $resolver->execute();
+            $result = $executor->execute();
         } catch (\Throwable $exception) {
-            $resolver = clone($resolver);
-            $resolver->setActionName('fallback');
-            die(var_dump($resolver));
+            die(var_dump(__METHOD__, $exception->getMessage()));
             $result = $this->executeResolver();
         }
 
@@ -125,33 +124,27 @@ class ActionExecutor
      */
     public function process()
     {
-        $resolver = $this->getResolver();
+        $executor = $this->getExecutor();
         $response = $this->getResponse();
 
-        $result = $this->executeResolver($resolver);
+        $result = $this->executeResolver($executor);
 
         $content = null;
-        
+
         // If content body is disabled for response, nothing to set in it
         // Used in case with redirect, for example
         if ($response->isEnableBody() === true) {
-            
-            $content = $result->getControllerContent();
-            $controller = $result->getControllerInstance();
-            
+
             // Special condition for handle controller templates
             if ($response->getBodyFormat() == Response::RESPONSE_HTML) {
 
                 // If controller action nothing return, we try render inner template
-                // ControllerName/ActionName.php
-                if (null === $content) {
-                    $template = sprintf('%s/%s', $resolver->getControllerCamelize(), $resolver->getActionCamelize());
-                    $content = $this->render($template, $controller->getPseudoPath());
-                }
-                
+                $content = $result->hasContent()
+                    ? $result->getContent() : $this->render($result->getTemplate(), $result->getPseudoPath());
+
                 // If controller has main layout trying, we try wrap in it
-                if (null !== $controller->getLayout()) {
-                    $content = $this->render($controller->getLayout(), null, ['content' => $content]);
+                if ($result->hasLayout()) {
+                    $content = $this->render($result->getLayout(), null, ['content' => $content]);
                 }
             }
         }

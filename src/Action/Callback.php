@@ -1,12 +1,12 @@
 <?php
 
-namespace Subapp\WebApp\Controller\Action;
+namespace Subapp\WebApp\Action;
 
 /**
- * Class CallbackFunction
- * @package Subapp\WebApp\Controller\Action
+ * Class Action
+ * @package Subapp\WebApp\Action
  */
-class CallbackFunction
+class Callback
 {
     
     /**

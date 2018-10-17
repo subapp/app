@@ -4,9 +4,9 @@ namespace Subapp\WebApp;
 
 use Subapp\Http\Response;
 use Subapp\ServiceLocator\ContainerInterface;
-use Subapp\WebApp\Controller\ActionExecutor;
+use Subapp\WebApp\Controller\Resolver;
 use Subapp\WebApp\Controller\ControllerInterface;
-use Subapp\WebApp\Controller\ControllerResolver;
+use Subapp\WebApp\Controller\AbstractExecutor;
 use Subapp\WebApp\Exception\RuntimeException;
 
 abstract class Controller implements ControllerInterface
@@ -109,10 +109,10 @@ abstract class Controller implements ControllerInterface
         }
         
         // controller resolver
-        $resolver = new ControllerResolver($this->getContainer());
+        $resolver = new AbstractExecutor($this->getContainer());
         
         // action executor
-        $executor = new ActionExecutor($this->response, $resolver);
+        $executor = new Resolver($this->response, $resolver);
         $executor->setCompiler($this->view);
         
         // resolver initialization
