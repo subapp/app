@@ -4,9 +4,9 @@ namespace Subapp\WebApp;
 
 use Subapp\Http\Response;
 use Subapp\ServiceLocator\ContainerInterface;
+use Subapp\WebApp\Controller\ControllerClassMethod;
 use Subapp\WebApp\Controller\Resolver;
 use Subapp\WebApp\Controller\ControllerInterface;
-use Subapp\WebApp\Controller\AbstractExecutor;
 use Subapp\WebApp\Exception\RuntimeException;
 
 abstract class Controller implements ControllerInterface
@@ -108,24 +108,30 @@ abstract class Controller implements ControllerInterface
             throw new RuntimeException("For hierarchically calling controller method parameter 'action' is required");
         }
         
-        // controller resolver
-        $resolver = new AbstractExecutor($this->getContainer());
-        
-        // action executor
-        $executor = new Resolver($this->response, $resolver);
-        $executor->setCompiler($this->view);
-        
-        // resolver initialization
-        $resolver->setNamespace($parameters['namespace'] ?? $this->getNamespace());
-        $resolver->setControllerClassName($parameters['controller'] ?? $this->getName());
-        $resolver->setActionName($parameters['action']);
-        
+        $action = new ControllerClassMethod(
+            $parameters['namespace'] ?? $this->getNamespace(),
+            $parameters['controller'] ?? $this->getName(),
+            $parameters['action']
+        );
+
         if (isset($parameters['params'], $parameters['params'][0])) {
-            $resolver->setParams($parameters['params']);
+            $action->setArguments($parameters['params']);
         }
+
+        $action->complementControllerInstance($this->getContainer());
         
         // run and return executor result
-        return $executor->process();
+        return $this->getControllerResolver()->process($action);
+    }
+    
+    /**
+     * @return Resolver
+     */
+    public function getControllerResolver()
+    {
+        $resolver = new Resolver($this->response, $this->view);
+        
+        return $resolver;
     }
     
     /**

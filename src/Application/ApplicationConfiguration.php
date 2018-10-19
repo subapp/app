@@ -2,6 +2,7 @@
 
 namespace Subapp\WebApp\Application;
 
+use Subapp\Collection\CollectionInterface;
 use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\Collection\ProxyInterface;
 use Subapp\WebApp\Exception\RuntimeException;
@@ -23,6 +24,7 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
     
     //application keys
     const KEY_CONTROLLER_NS = 'controller.defaultNamespace';
+    const KEY_FALLBACK_CALLABLE = 'fallback.function';
     
     const KEY_URI_BASE   = 'uri.base';
     const KEY_URI_STATIC = 'uri.static';
@@ -43,6 +45,16 @@ class ApplicationConfiguration extends ParametersCollection implements ProxyInte
         parent::__construct($parameters);
     }
     
+    /**
+     * @return callable|array
+     */
+    public function getFallbackFunction()
+    {
+        $fallback = $this->getApplicationConfiguration()->getValue(static::KEY_FALLBACK_CALLABLE);
+
+        return ($fallback instanceof CollectionInterface) ? $fallback->toArray() : $fallback;
+    }
+
     /**
      * @return string
      */

@@ -19,6 +19,15 @@ return [
         'template' => [
             'root' => '{application.root}/views',
         ],
+        'fallback' => [
+            'function' => ['App\Controller', 'IndexController', 'fallbackAction'],
+            'exception' => [
+                'response' => [
+                    'exceptionClass' => false,
+                    'stackTrace' => false,
+                ],
+            ],
+        ],
     ],
     'annotations' => [
         'enabled' => true,

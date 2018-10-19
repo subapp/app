@@ -22,6 +22,8 @@ class ActionFactory
     public function getAction($callback)
     {
         switch (true) {
+            case (is_array($callback) && count($callback) === 3):
+                return new ControllerClassMethod(...$callback);
             case is_array($callback):
                 return new ClassMethodAction(...$callback);
             case is_callable($callback):

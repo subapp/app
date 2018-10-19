@@ -31,7 +31,7 @@ abstract class AbstractExecutor implements ExecutorInterface
      */
     public function __debugInfo()
     {
-        return ['action' => $this->action,];
+        return ['class' => static::class, 'action' => $this->action,];
     }
     
     /**

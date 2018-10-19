@@ -32,27 +32,27 @@ class ControllerClassMethod extends ClassMethodAction
     {
         /** @var ControllerInterface $controller */
         $controller = $this->getObject();
-
+        
+        // set needed variables to controller object
         $controller->setContainer($container);
         $controller->setNamespace($this->getNamespace());
         $controller->setName($this->getClass());
         $controller->setAction($this->getMethod());
         $controller->setParams($this->getArguments());
     }
-    
-    
+
     /**
      * @return string
      */
     public function getShortClassName()
     {
-        $className = $this->getClass();
+        $class = $this->getClass();
         
-        if (false !== strpos($className, 'Controller')) {
-            $className = substr($className, 0, -10);
+        if (false !== strpos($class, 'Controller')) {
+            $class = substr($class, 0, -10);
         }
         
-        return ucfirst($className);
+        return ucfirst($class);
     }
     
     /**
@@ -60,13 +60,13 @@ class ControllerClassMethod extends ClassMethodAction
      */
     public function getShortMethodName()
     {
-        $actionName = $this->getMethod();
+        $method = $this->getMethod();
         
-        if (false !== strpos($actionName, 'Action')) {
-            $actionName = substr($actionName, 0, -6);
+        if (false !== strpos($method, 'Action')) {
+            $method = substr($method, 0, -6);
         }
         
-        return ucfirst($actionName);
+        return ucfirst($method);
     }
 
 }

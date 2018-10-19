@@ -18,6 +18,16 @@ class IndexController extends Controller
     
     }
     
+    public function fallbackAction(Response $response, \Throwable $exception)
+    {
+        $response->setBodyFormat(Response::RESPONSE_CUSTOM, JsonResponseFormatter::class);
+        
+        $message = new ExceptionResponse($exception, true);
+        $message->useClassName();
+    
+        return $message;
+    }
+    
     /**
      * @Route(pattern="/", method=@Method(methods='POST'))
      * @param int $id

@@ -51,6 +51,7 @@ abstract class ConfigurableApplication extends Application
         
         // configure application
         $this->setControllerNamespace($configuration->getControllerNS());
+        $this->setFallbackAction($configuration->getFallbackFunction());
         
         // URI configure
         $this->url->setBasePath($configuration->getURIBasePath());

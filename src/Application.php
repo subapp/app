@@ -6,12 +6,9 @@ use Subapp\Http\Response;
 use Subapp\Router\Router;
 use Subapp\ServiceLocator\ContainerInterface;
 use Subapp\ServiceLocator\Service;
-use Subapp\WebApp\Controller\Action\ClassMethodAction;
+use Subapp\WebApp\Action\ActionInterface;
 use Subapp\WebApp\Controller\ControllerClassMethod;
-use Subapp\WebApp\Controller\Executor\ControllerActionExecutor;
-use Subapp\WebApp\Controller\ExecutorFactory;
 use Subapp\WebApp\Controller\Resolver;
-use Subapp\WebApp\Controller\AbstractExecutor;
 use Subapp\WebApp\Exception\NotFoundException;
 use Subapp\WebApp\Exception\RouteNotFoundException;
 use Subapp\WebApp\Exception\RuntimeException;
@@ -86,28 +83,14 @@ class Application implements ServiceLocatorAware
         $router = $this->initializeDefaultRoutes()->handle();
         
         if ($router->isFounded()) {
-
-            $factory = new ExecutorFactory();
             
-            list($class, $method) = $this->extractControllerCallback($router);
-
-            $namespace = (null === $router->getNamespace())
-                ? $this->getControllerNamespace() : $router->getNamespace();
-
-            $action = new ControllerClassMethod($namespace, $class, $method);
-            $action->setArguments($router->getMatches());
-            $action->complementControllerInstance($this->getContainer());
-
-            $executor = $factory->getExecutor($action);
-            $executor->setAction($action);
-
-            $resolver = new Resolver($this->response, $executor);
-            $resolver->setCompiler($this->view);
+            $resolver = new Resolver($this->response, $this->view);
+            $resolver->setFallback($this->getFallbackAction());
 
             $this->templateInjection();
             
             try {
-                $resolver->execute();
+                $resolver->execute($this->createActionObject($router));
             } catch (\Throwable $exception) {
                 $this->response->setStatusCode(500);
                 throw $exception;
@@ -119,6 +102,24 @@ class Application implements ServiceLocatorAware
         }
         
         return $this->response->send();
+    }
+    
+    /**
+     * @param Router $router
+     * @return ActionInterface
+     */
+    private function createActionObject(Router $router)
+    {
+        list($class, $method) = $this->extractControllerCallback($router);
+    
+        $namespace = (null === $router->getNamespace())
+            ? $this->getControllerNamespace() : $router->getNamespace();
+    
+        $action = new ControllerClassMethod($namespace, $class, $method);
+        $action->setArguments($router->getMatches());
+        $action->complementControllerInstance($this->getContainer());
+        
+        return $action;
     }
     
     /**
@@ -166,7 +167,7 @@ class Application implements ServiceLocatorAware
     /**
      * @param callable $fallbackAction
      */
-    public function setFallbackAction(callable $fallbackAction)
+    public function setFallbackAction($fallbackAction)
     {
         $this->fallbackAction = $fallbackAction;
     }
