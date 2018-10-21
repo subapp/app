@@ -142,7 +142,7 @@ class Resolver
 
         try {
             $action = (new ActionFactory())->getAction($this->getFallback());
-            $action->setArguments(...$arguments);
+            $action->setArguments($arguments);
             $result = $this->factory->getExecutor($action)->execute();
         } catch (\Throwable $e) {
             throw $exception;

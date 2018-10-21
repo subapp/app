@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use Subapp\Http\Response;
-use Subapp\WebApp\Controller;
 use Subapp\WebApp\Annotation\Route;
+use Subapp\WebApp\Mvc\AbstractController;
 use Subapp\WebApp\Rest\JsonMessages\ExceptionResponse;
 use Subapp\WebApp\Rest\JsonResponseFormatter;
 
-class IndexController extends Controller
+class IndexController extends AbstractController
 {
     
     protected $test;
@@ -22,7 +22,11 @@ class IndexController extends Controller
     {
         $response->setBodyFormat(Response::RESPONSE_CUSTOM, JsonResponseFormatter::class);
         
-        $message = new ExceptionResponse($exception, true);
+        $exception = new \Exception(sprintf('Application halt with exception: [%s] %s', get_class($exception), $exception->getMessage()));
+        
+        $config = $this->getConfig();
+        
+        $message = new ExceptionResponse($exception, true, $config->getDisplayErrors());
         $message->useClassName();
     
         return $message;

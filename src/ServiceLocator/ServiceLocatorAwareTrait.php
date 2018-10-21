@@ -2,7 +2,6 @@
 
 namespace Subapp\WebApp\ServiceLocator;
 
-use Subapp\Collection\Parameters\ParametersCollection;
 use Subapp\Http\Cookies;
 use Subapp\Http\Request;
 use Subapp\Http\Response;
@@ -14,6 +13,7 @@ use Subapp\Session\Adapter\Files as SessionFiles;
 use Subapp\Session\Flash\Flash\Session as FlashSession;
 use Subapp\Template\NullTemplate;
 use Subapp\UrlGenerator\UrlBuilder;
+use Subapp\WebApp\Application\ApplicationConfiguration;
 use Subapp\WebApp\Auth\AuthInterface;
 use Subapp\WebApp\Exception\RuntimeException;
 use Subapp\WebApp\Web\Assets;
@@ -21,22 +21,22 @@ use Subapp\WebApp\Web\Metatag;
 use Composer\Autoload\ClassLoader;
 
 /**
- * @property ParametersCollection config
- * @property ClassLoader          classLoader
- * @property Request              request
- * @property Response             response
- * @property Cookies              cookies
- * @property Router               router
- * @property UrlBuilder           url
- * @property NullTemplate         view
- * @property SessionFiles         session
- * @property FlashSession         flash
- * @property NullTemplate         template
- * @property ServiceLocator       orm
- * @property Metatag              metatag
- * @property Log                  logger
- * @property AuthInterface        auth
- * @property Assets               assets
+ * @property ApplicationConfiguration config
+ * @property ClassLoader              classLoader
+ * @property Request                  request
+ * @property Response                 response
+ * @property Cookies                  cookies
+ * @property Router                   router
+ * @property UrlBuilder               url
+ * @property NullTemplate             view
+ * @property SessionFiles             session
+ * @property FlashSession             flash
+ * @property NullTemplate             template
+ * @property ServiceLocator           orm
+ * @property Metatag                  metatag
+ * @property Log                      logger
+ * @property AuthInterface            auth
+ * @property Assets                   assets
  *
  * Trait ServiceLocatorAwareTrait
  * @package Subapp\Webapp\ServiceLocator
@@ -78,7 +78,7 @@ trait ServiceLocatorAwareTrait
     abstract public function setContainer(ContainerInterface $container);
     
     /**
-     * @return ParametersCollection
+     * @return ApplicationConfiguration
      */
     public function getConfig()
     {
