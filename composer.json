@@ -27,7 +27,7 @@
     "subapp/url-generator": "~0.3",
     "subapp/template": "~1.4",
     "subapp/session": "~0.3",
-    "subapp/orm": "~2.2"
+    "subapp/orm": "~3.0"
   },
   "autoload": {
     "psr-4": {
