@@ -25,7 +25,7 @@
     "subapp/router": "~0.3",
     "subapp/uri": "~0.2",
     "subapp/url-generator": "~0.3",
-    "subapp/template": "~1.4",
+    "subapp/template": "~1.5",
     "subapp/session": "~0.3",
     "subapp/orm": "~3.0"
   },
